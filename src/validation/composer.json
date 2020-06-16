@@ -1,0 +1,30 @@
+{
+    "name": "rock-admin/validation",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "daodao97",
+            "email": "daodao97@foxmail.com"
+        }
+    ],
+    "require": {
+        "hyperf/validation": "^1.1",
+        "rock-admin/base-utils": "~0.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rock\\Validation\\": "./src"
+        },
+        "files": [
+        ]
+    },
+    "config": {
+        "sort-packages": false
+    },
+    "extra": {
+        "hyperf": {
+            "config": "Rock\\Validation\\ConfigProvider"
+        }
+    }
+}

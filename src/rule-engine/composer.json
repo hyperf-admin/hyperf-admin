@@ -1,0 +1,20 @@
+{
+    "name": "rock-admin/rule-engine",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "daodao97",
+            "email": "daodao97@foxmail.com"
+        }
+    ],
+    "require": {
+        "zoujingli/ip2region": "^1.0"
+    },
+    "description": "",
+    "autoload": {
+        "psr-4": {
+            "Rock\\RuleEngine\\": "./src"
+        }
+    }
+}

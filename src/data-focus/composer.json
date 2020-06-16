@@ -1,0 +1,29 @@
+{
+    "name": "rock-admin/data-focus",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "daodao97",
+            "email": "daodao97@foxmail.com"
+        }
+    ],
+    "require": {
+        "rock-admin/admin": "dev-master",
+        "nette/php-generator": "^3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rock\\DataFocus\\": "./src"
+        },
+        "files": [
+            "./src/Util/func.php"
+        ]
+    },
+    "description": "",
+    "extra": {
+        "hyperf": {
+            "config": "Rock\\DataFocus\\ConfigProvider"
+        }
+    }
+}

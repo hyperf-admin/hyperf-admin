@@ -1,0 +1,102 @@
+{
+    "name": "hyperf-admin/hyperf-admin",
+    "description": "hyperf-admin",
+    "authors": [
+        {
+            "name": "daodao97",
+            "email": "daodao97@foxmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "ext-json": "*",
+        "ext-swoole": ">=4.4",
+        "ext-pdo": "*"
+    },
+    "require-dev": {
+        "aliyuncs/oss-sdk-php": "^2.3",
+        "box/spout": "^3.1",
+        "hyperf/amqp": "^1.1",
+        "hyperf/cache": "~1.1.0",
+        "hyperf/command": "~1.1.0",
+        "hyperf/config": "~1.1.0",
+        "hyperf/constants": "^1.1",
+        "hyperf/database": "^1.1",
+        "hyperf/db-connection": "~1.1.0",
+        "hyperf/filesystem": "^1.1",
+        "hyperf/framework": "~1.1.0",
+        "hyperf/guzzle": "~1.1.0",
+        "hyperf/http-server": "~1.1.0",
+        "hyperf/logger": "~1.1.0",
+        "hyperf/memory": "~1.1.0",
+        "hyperf/metric": "^1.1",
+        "hyperf/nsq": "^1.1",
+        "hyperf/process": "~1.1.0",
+        "hyperf/redis": "~1.1.0",
+        "hyperf/snowflake": "^1.1",
+        "yadakhov/insert-on-duplicate-key": "^1.2",
+        "hyperf/async-queue": "^1.1",
+        "hyperf/crontab": "^1.1",
+        "zoujingli/ip2region": "^1.0",
+        "hyperf/validation": "^1.1"
+    },
+    "replace": {
+        "hyperf-admin/base-utils": "self.version",
+        "hyperf-admin/admin": "self.version",
+        "hyperf-admin/alert-manager": "self.version",
+        "hyperf-admin/cron-center": "self.version",
+        "hyperf-admin/event-bus": "self.version",
+        "hyperf-admin/process-manager": "self.version",
+        "hyperf-admin/rule-engine": "self.version",
+        "hyperf-admin/validation": "self.version",
+        "hyperf-admin/workflow": "self.version",
+        "hyperf-admin/data-focus": "self.version",
+        "hyperf-admin/dev-tools": "self.version"
+    },
+    "autoload": {
+        "psr-4": {
+            "HyperfAdmin\\BaseUtils\\": "./src/base-utils/src",
+            "HyperfAdmin\\Admin\\": "./src/admin/src",
+            "HyperfAdmin\\AlertManager\\": "./src/alert-manager/src",
+            "HyperfAdmin\\CronCenter\\": "./src/cron-center/src",
+            "HyperfAdmin\\DataFocus\\": "./src/data-focus/src",
+            "HyperfAdmin\\DevTools\\": "./src/dev-tools/src",
+            "HyperfAdmin\\EventBus\\": "./src/event-bus/src",
+            "HyperfAdmin\\ProcessManager\\": "./src/process-manager/src",
+            "HyperfAdmin\\RuleEngine\\": "./src/rule-engine/src",
+            "HyperfAdmin\\Validation\\": "./src/validation/src"
+        },
+        "files": [
+            "./src/base-utils/src/Helper/array.php",
+            "./src/base-utils/src/Helper/common.php",
+            "./src/base-utils/src/Helper/constants.php",
+            "./src/base-utils/src/Helper/system.php",
+            "./src/data-focus/src/Util/func.php",
+            "./src/event-bus/src/funcs.php",
+            "./src/admin/src/funcs/common.php",
+            "./src/data-focus/src/Util/SimpleHtmlDom.php"
+        ],
+        "classmap": [
+            "./src/base-utils/src/classmap"
+        ]
+    },
+    "extra": {
+        "hyperf": {
+            "config": [
+                "HyperfAdmin\\Admin\\ConfigProvider",
+                "HyperfAdmin\\BaseUtils\\ConfigProvider@99",
+                "HyperfAdmin\\AlertManager\\ConfigProvider",
+                "HyperfAdmin\\CronCenter\\ConfigProvider",
+                "HyperfAdmin\\DataFocus\\ConfigProvider",
+                "HyperfAdmin\\DevTools\\ConfigProvider",
+                "HyperfAdmin\\EventBus\\ConfigProvider",
+                "HyperfAdmin\\ProcessManager\\ConfigProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    }
+}

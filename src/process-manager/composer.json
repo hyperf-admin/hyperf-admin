@@ -1,0 +1,29 @@
+{
+    "name": "rock-admin/process",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "daodao97",
+            "email": "daodao97@foxmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "hyperf/amqp": "^1.1",
+        "hyperf/crontab": "^1.1",
+        "hyperf/nsq": "^1.1",
+        "hyperf/process": "~1.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rock\\ProcessManager\\": "src/"
+        },
+        "files": []
+    },
+    "extra": {
+        "hyperf": {
+            "config": "Rock\\ProcessManager\\ConfigProvider"
+        }
+    }
+}

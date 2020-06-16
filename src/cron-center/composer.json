@@ -1,0 +1,31 @@
+{
+    "name": "rock-admin/cron-center",
+    "description": "hyperf crontab manager",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "daodao97",
+            "email": "daodao97@foxmail.com"
+        }
+    ],
+    "require": {
+        "hyperf/crontab": "^1.1",
+        "hyperf/process": "^1.1",
+        "hyperf/command": "^1.1",
+        "hyperf/event": "^1.1",
+        "rock-admin/base-utils": "~0.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rock\\CronCenter\\": "./src"
+        },
+        "files": [
+        ]
+    },
+    "extra": {
+        "hyperf": {
+            "config": "Rock\\CronCenter\\ConfigProvider"
+        }
+    }
+}

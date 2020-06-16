@@ -1,0 +1,33 @@
+{
+    "name": "rock-admin/dev-tools",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "daodao97",
+            "email": "daodao97@foxmail.com"
+        }
+    ],
+    "require": {
+        "rock-admin/scaffold": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rock\\WorkFlow\\": "./src"
+        },
+        "files": [
+        ]
+    },
+    "extra": {
+        "rock-admin": {
+            "config": "Rock\\WorkFlow\\ConfigProvider"
+        }
+    },
+    "repositories": {
+        "rock-admin": {
+            "type": "path",
+            "url": "/opt/www/rock-admin/*/"
+        }
+    },
+    "description": ""
+}

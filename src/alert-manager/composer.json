@@ -1,0 +1,30 @@
+{
+    "name": "rock-admin/alert-manager",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "daodao97",
+            "email": "daodao97@foxmail.com"
+        }
+    ],
+    "require": {
+        "hyperf/async-queue": "^1.1",
+        "hyperf/process": "^1.1",
+        "rock-admin/rule-engine": "~0.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rock\\AlertManager\\": "./src"
+        },
+        "files": [
+            "./src/func.php"
+        ]
+    },
+    "extra": {
+        "hyperf": {
+            "config": "Rock\\AlertManager\\ConfigProvider"
+        }
+    },
+    "description": ""
+}

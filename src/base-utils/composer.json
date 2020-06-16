@@ -1,0 +1,78 @@
+{
+    "name": "rock-admin/base-utils",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "daodao97",
+            "email": "daodao97@foxmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "ext-json": "*",
+        "ext-swoole": ">=4.4",
+        "ext-yaml": "*",
+        "aliyuncs/oss-sdk-php": "^2.3",
+        "box/spout": "^3.1",
+        "hyperf/amqp": "^1.1",
+        "hyperf/cache": "~1.1.0",
+        "hyperf/command": "~1.1.0",
+        "hyperf/config": "~1.1.0",
+        "hyperf/constants": "^1.1",
+        "hyperf/database": "^1.1",
+        "hyperf/db-connection": "~1.1.0",
+        "hyperf/filesystem": "^1.1",
+        "hyperf/framework": "~1.1.0",
+        "hyperf/guzzle": "~1.1.0",
+        "hyperf/http-server": "~1.1.0",
+        "hyperf/logger": "~1.1.0",
+        "hyperf/memory": "~1.1.0",
+        "hyperf/metric": "^1.1",
+        "hyperf/nsq": "^1.1",
+        "hyperf/process": "~1.1.0",
+        "hyperf/redis": "~1.1.0",
+        "hyperf/snowflake": "^1.1",
+        "yadakhov/insert-on-duplicate-key": "^1.2",
+        "ext-pdo": "*"
+    },
+    "require-dev": {
+        "swoft/swoole-ide-helper": "^4.2",
+        "phpstan/phpstan": "^0.11.2",
+        "hyperf/devtool": "~1.1.0",
+        "hyperf/testing": "~1.1.0",
+        "daodao97/hyperf-watch": "dev-master",
+        "symfony/var-dumper": "^5.0"
+    },
+    "suggest": {
+        "ext-openssl": "Required to use HTTPS.",
+        "ext-json": "Required to use JSON.",
+        "ext-pdo": "Required to use MySQL Client.",
+        "ext-pdo_mysql": "Required to use MySQL Client.",
+        "ext-redis": "Required to use Redis Client."
+    },
+    "autoload": {
+        "psr-4": {
+            "Rock\\BaseUtils\\": "src/"
+        },
+        "files": [
+            "src/Helper/constants.php",
+            "src/Helper/common.php",
+            "src/Helper/array.php",
+            "src/Helper/system.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "HyperfTest\\": "./tests/"
+        }
+    },
+    "config": {
+        "sort-packages": false
+    },
+    "extra": {
+        "hyperf": {
+            "config": "Rock\\BaseUtils\\ConfigProvider"
+        }
+    }
+}

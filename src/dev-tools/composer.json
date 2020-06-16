@@ -1,0 +1,28 @@
+{
+    "name": "rock-admin/dev-tools",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "daodao97",
+            "email": "daodao97@foxmail.com"
+        }
+    ],
+    "require": {
+        "rock-admin/admin": "dev-master",
+        "nette/php-generator": "^3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rock\\DevTools\\": "./src"
+        },
+        "files": [
+        ]
+    },
+    "extra": {
+        "hyperf": {
+            "config": "Rock\\DevTools\\ConfigProvider"
+        }
+    },
+    "description": ""
+}

@@ -1,0 +1,29 @@
+{
+    "name": "rock-admin/event-bus",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "daodao97",
+            "email": "daodao97@foxmail.com"
+        }
+    ],
+    "require": {
+        "hyperf/process": "^1.1",
+        "hyperf/amqp": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rock\\EventBus\\": "./src"
+        },
+        "files": [
+            "./src/funcs.php"
+        ]
+    },
+    "extra": {
+        "hyperf": {
+            "config": "Rock\\EventBus\\ConfigProvider"
+        }
+    },
+    "description": ""
+}
