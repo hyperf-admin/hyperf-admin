@@ -1,5 +1,6 @@
 * 入门
   * [介绍](guide/desc.md)
+  * [Demo](guide/demo.md)
   * [安装](guide/install.md)
   * [开发样例](guide/dev_example.md)
 * 后端
