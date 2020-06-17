@@ -5,7 +5,7 @@
 # 1.  node ^v11.2.0 https://nodejs.org/zh-cn/download/
 # 2.  npm ^6.4.1
 git clone https://github.com/hyperf-admin/hyperf-admin-frontend.git
-cd hyperf-admin-front
+cd hyperf-admin-frontend
 npm i
 npm run dev
 ```
@@ -24,6 +24,8 @@ npm run build:test
 # 环境依赖 php ^7.1 composer swoole 
 composer create-project hyperf/hyperf-skeleton hyperf-admin
 cd hyperf-admin
+# 移除日志配置, admin 底层已配置
+rm config/autoload/logger.php
 # hyperf-admin 为分包的模式, 此处引入的是完整厂库, 实际项目请按需引入
 composer require hyperf-admin/hyperf-admin
 composer i
