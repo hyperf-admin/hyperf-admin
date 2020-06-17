@@ -27,6 +27,7 @@ cd hyperf-admin
 # 移除日志配置, admin 底层已配置
 rm config/autoload/logger.php
 # hyperf-admin 为分包的模式, 此处引入的是完整厂库, 实际项目请按需引入
+# 尚未同步到 packagist 敬请期待
 composer require hyperf-admin/hyperf-admin
 composer i
 # 启动 热重启参考 https://github.com/daodao97/hyperf-watch
@@ -44,7 +45,7 @@ server {
     listen 80;
     server_name hyperf-admin.com;
     index index.html;
-    root /opt/www/rock-admin-front/dist;
+    root /opt/www/hyperf-admin-front/dist;
     access_log /usr/local/var/log/nginx/hyperf-admin.access.log;
     error_log /usr/local/var/log/nginx/hyperf-admin.error.log;
 
@@ -57,7 +58,7 @@ server {
     }
 
     location / {
-        root /opt/www/rock-admin-front/dist/default;
+        root /opt/www/hyperf-admin-front/dist/default;
         index index.html;
     }
 

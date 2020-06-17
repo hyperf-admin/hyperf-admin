@@ -23,6 +23,9 @@
 
 后端的详细文档见[这里](/backend/scaffold)
 
+### UI预览
+![样式预览](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/FW2cCN.png)
+
 ### 依赖 & 参考
 
 -   前端
