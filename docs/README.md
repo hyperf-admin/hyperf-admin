@@ -2,7 +2,7 @@
 
 ![hyperf-admin架构](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/sJaJti.png)
 
-前端为`vue multiple page`多页模式, 可以按模块打包, 默认包含两个模块`default` 默认模块,  `system`系统管理模块,  绝大部分业务组件在`src/components`目录, 前端文档详见 [这里](/frontend/)
+前端为`vue multiple page`多页模式, 可以按模块打包, 默认包含两个模块`default` 默认模块,  `system`系统管理模块,  绝大部分业务组件在`src/components`目录, 前端文档详见 [这里](/frontend/form)
 
 后端为`composer包`模式, 目前包含组件
 
@@ -19,7 +19,7 @@
     -   `composer require hyperf-admin/cron-center` 定时任务管理, 后台化管理任务
     -   `composer require hyperf-admin/data-focus` 数据面板模块, 帮你快速制作数据大盘
 
-后端的详细文档见[这里](/backend/)
+后端的详细文档见[这里](/backend/scaffold)
 
 ## 依赖 & 参考
 
