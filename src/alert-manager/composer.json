@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Rock\\AlertManager\\": "./src"
+            "HyperfAdmin\\AlertManager\\": "./src"
         },
         "files": [
             "./src/func.php"
@@ -23,7 +23,7 @@
     },
     "extra": {
         "hyperf": {
-            "config": "Rock\\AlertManager\\ConfigProvider"
+            "config": "HyperfAdmin\\AlertManager\\ConfigProvider"
         }
     },
     "description": ""

@@ -11,10 +11,17 @@
   * [通用配置](backend/common-config.md)
   * [辅助函数](backend/functions.md)
 * 业务组件
-    * [DevTools-开发者工具](backend/components/dev-tools.md)
+    * [业务组件介绍](backend/components/business/desc.md)
+    * [DevTools-开发者工具](backend/components/business/dev-tools.md)
     * [DataFocus-数据面板](backend/components/data-focus.md)
-    * [CronCenter-任务中心](backend/components/cron-center.md)
-    * [开发一个业务组件](backend/make_component.md)
+    * [CronCenter-任务中心](backend/components/business/cron-center.md)
+    * [开发一个业务组件](backend/components/business/make_component.md)
+* 基础组件
+    * [validation-验证器](backend/components/base/validation.md)
+    * [rule-engine-规则引擎](backend/components/base/rule_engine.md)
+    * [event-bus-派发器](backend/components/base/event_bus.md)
+    * [process-manager-进程过滤](backend/components/base/process_manager.md)
+    * [alert-manager-报警](backend/components/base/alert_manager.md)
 * 前端
     * [表单](frontend/form.md)
     * [列表](frontend/list.md)

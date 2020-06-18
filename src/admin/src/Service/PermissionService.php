@@ -322,15 +322,11 @@ class PermissionService
         if($routes[0] !== Dispatcher::FOUND) {
             return false;
         }
-        if($routes[1] instanceof Handler) {
-            if(is_string($routes[1]->callback)) {
-                [$controller, $action] = $this->prepareHandler($routes[1]->callback);
-            } else {
-                [$controller, $action] = [
-                    $routes[1]->callback[0],
-                    $routes[1]->callback[1],
-                ];
+        if ($routes[1] instanceof Handler) {
+            if ($routes[1]->callback instanceof \Closure) {
+                return true;
             }
+            [$controller, $action] = [$routes[1]->callback[0], $routes[1]->callback[1]];
         } else {
             [$controller, $action] = $this->prepareHandler($routes[1]);
         }

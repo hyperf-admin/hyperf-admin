@@ -1,0 +1,26 @@
+{
+    "name": "hyperf-admin/config-center",
+    "description": "hyperf adming config center",
+    "authors": [
+        {
+            "name": "daodao97",
+            "email": "daodao97@foxmail.com"
+        }
+    ],
+    "require": {
+        "hyperf-admin/admin": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "HyperfAdmin\\ConfigCenter\\": "./src"
+        },
+        "files": [
+        ]
+    },
+    "extra": {
+        "hyperf": {
+            "config": "HyperfAdmin\\ConfigCenter\\ConfigProvider"
+        }
+
+    }
+}

@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Rock\\Admin\\": "./src"
+            "HyperfAdmin\\Admin\\": "./src"
         },
         "files": [
             "src/funcs/common.php"
@@ -25,7 +25,7 @@
     },
     "extra": {
         "hyperf": {
-            "config": "Rock\\Admin\\ConfigProvider"
+            "config": "HyperfAdmin\\Admin\\ConfigProvider"
         }
     }
 }

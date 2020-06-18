@@ -17,13 +17,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Rock\\ProcessManager\\": "src/"
+            "HyperfAdmin\\ProcessManager\\": "src/"
         },
         "files": []
     },
     "extra": {
         "hyperf": {
-            "config": "Rock\\ProcessManager\\ConfigProvider"
+            "config": "HyperfAdmin\\ProcessManager\\ConfigProvider"
         }
     }
 }

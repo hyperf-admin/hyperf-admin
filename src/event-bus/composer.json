@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Rock\\EventBus\\": "./src"
+            "HyperfAdmin\\EventBus\\": "./src"
         },
         "files": [
             "./src/funcs.php"
@@ -22,7 +22,7 @@
     },
     "extra": {
         "hyperf": {
-            "config": "Rock\\EventBus\\ConfigProvider"
+            "config": "HyperfAdmin\\EventBus\\ConfigProvider"
         }
     },
     "description": ""

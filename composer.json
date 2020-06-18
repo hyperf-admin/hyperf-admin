@@ -64,7 +64,8 @@
             "HyperfAdmin\\EventBus\\": "./src/event-bus/src",
             "HyperfAdmin\\ProcessManager\\": "./src/process-manager/src",
             "HyperfAdmin\\RuleEngine\\": "./src/rule-engine/src",
-            "HyperfAdmin\\Validation\\": "./src/validation/src"
+            "HyperfAdmin\\Validation\\": "./src/validation/src",
+            "HyperfAdmin\\ConfigCenter\\": "./src/config-center/src"
         },
         "files": [
             "./src/base-utils/src/Helper/array.php",
@@ -90,7 +91,8 @@
                 "HyperfAdmin\\DataFocus\\ConfigProvider",
                 "HyperfAdmin\\DevTools\\ConfigProvider",
                 "HyperfAdmin\\EventBus\\ConfigProvider",
-                "HyperfAdmin\\ProcessManager\\ConfigProvider"
+                "HyperfAdmin\\ProcessManager\\ConfigProvider",
+                "HyperfAdmin\\ConfigCenter\\ConfigProvider"
             ]
         }
     },

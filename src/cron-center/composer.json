@@ -18,14 +18,14 @@
     },
     "autoload": {
         "psr-4": {
-            "Rock\\CronCenter\\": "./src"
+            "HyperfAdmin\\CronCenter\\": "./src"
         },
         "files": [
         ]
     },
     "extra": {
         "hyperf": {
-            "config": "Rock\\CronCenter\\ConfigProvider"
+            "config": "HyperfAdmin\\CronCenter\\ConfigProvider"
         }
     }
 }

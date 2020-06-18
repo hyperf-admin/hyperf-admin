@@ -14,7 +14,7 @@
     "description": "",
     "autoload": {
         "psr-4": {
-            "Rock\\RuleEngine\\": "./src"
+            "HyperfAdmin\\RuleEngine\\": "./src"
         }
     }
 }

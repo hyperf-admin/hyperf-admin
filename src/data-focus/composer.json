@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Rock\\DataFocus\\": "./src"
+            "HyperfAdmin\\DataFocus\\": "./src"
         },
         "files": [
             "./src/Util/func.php"
@@ -23,7 +23,7 @@
     "description": "",
     "extra": {
         "hyperf": {
-            "config": "Rock\\DataFocus\\ConfigProvider"
+            "config": "HyperfAdmin\\DataFocus\\ConfigProvider"
         }
     }
 }

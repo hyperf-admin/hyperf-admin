@@ -14,14 +14,14 @@
     },
     "autoload": {
         "psr-4": {
-            "Rock\\DevTools\\": "./src"
+            "HyperfAdmin\\DevTools\\": "./src"
         },
         "files": [
         ]
     },
     "extra": {
         "hyperf": {
-            "config": "Rock\\DevTools\\ConfigProvider"
+            "config": "HyperfAdmin\\DevTools\\ConfigProvider"
         }
     },
     "description": ""

@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Rock\\Validation\\": "./src"
+            "HyperfAdmin\\Validation\\": "./src"
         },
         "files": [
         ]
@@ -24,7 +24,7 @@
     },
     "extra": {
         "hyperf": {
-            "config": "Rock\\Validation\\ConfigProvider"
+            "config": "HyperfAdmin\\Validation\\ConfigProvider"
         }
     }
 }
