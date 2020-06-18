@@ -43,7 +43,7 @@ class BootProcessListener implements ListenerInterface
         }
 
         $this->log->info('tick begin');
-        $interval = config('config_center.interval', 100);
+        $interval = config('config_center.interval', 1);
         $this->load();
         $that = $this;
         Timer::tick($interval * 1000, function () use ($that) {

@@ -26,12 +26,31 @@ composer create-project hyperf/hyperf-skeleton hyperf-admin
 cd hyperf-admin
 # 移除日志配置, admin 底层已配置
 rm config/autoload/logger.php
-# hyperf-admin 为分包的模式, 此处引入的是完整厂库, 实际项目请按需引入
-# 尚未同步到 packagist 敬请期待
+# 设置基础环境配置 .env 具体见下方
+# hyperf-admin 为分包的模式, 此处引入的是完整仓库, 实际项目请按需引入
 composer require hyperf-admin/hyperf-admin
 composer i
 # 启动 热重启参考 https://github.com/daodao97/hyperf-watch
 composer watch
+```
+
+`.evn`
+```bash
+APP_NAME=hyperf-admin
+ENV=dev
+
+REDIS_HOST=localhost
+REDIS_AUTH=(null)
+REDIS_PORT=6379
+REDIS_DB=0
+
+HYPERF_ADMIN_DB_HOST=localhost
+HYPERF_ADMIN_DB_PORT=3306
+HYPERF_ADMIN_DB_NAME=hyperf_admin
+HYPERF_ADMIN_DB_USER=root
+HYPERF_ADMIN_DB_PWD=root
+
+LOCAL_DB_HOST=localhost
 ```
 
 ## nginx配置

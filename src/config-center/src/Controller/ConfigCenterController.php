@@ -15,6 +15,9 @@ class ConfigCenterController extends AdminAbstractController
     {
         return [
             'exportAble' => false,
+            'filter' => [
+                'path%'
+            ],
             'form' => [
                 'id|#' => '',
                 'path|存储位置' => [
