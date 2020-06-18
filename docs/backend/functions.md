@@ -40,7 +40,7 @@
 
 #### array_remove_keys
 
-#### mt_array_merge
+#### array_overlay
 
 ## 系统函数
 

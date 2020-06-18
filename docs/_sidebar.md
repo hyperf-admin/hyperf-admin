@@ -13,7 +13,7 @@
 * 业务组件
     * [业务组件介绍](backend/components/business/desc.md)
     * [DevTools-开发者工具](backend/components/business/dev-tools.md)
-    * [DataFocus-数据面板](backend/components/data-focus.md)
+    * [DataFocus-数据面板](backend/components/business/data-focus.md)
     * [CronCenter-任务中心](backend/components/business/cron-center.md)
     * [开发一个业务组件](backend/components/business/make_component.md)
 * 基础组件
