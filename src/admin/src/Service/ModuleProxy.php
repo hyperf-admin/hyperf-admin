@@ -33,7 +33,8 @@ class ModuleProxy
             return false;
         }
 
-        if ($this->modules[$this->target_module]['type'] != 'remote') {
+        $type = $this->modules[$this->target_module]['type'] ?? 'local';
+        if ($type != 'remote') {
             return false;
         }
 
