@@ -8,6 +8,8 @@
   * [表单详解](backend/form.md)
   * [列表详解](backend/list.md)
   * [按钮详解](backend/super-button.md)
+  * [脚手架实体](backend/scaffold_entity.md)
+  * [多模块模式](backend/remote_module.md)
   * [通用配置](backend/common-config.md)
   * [辅助函数](backend/functions.md)
 * 业务组件
