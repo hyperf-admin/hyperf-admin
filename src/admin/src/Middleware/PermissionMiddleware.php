@@ -5,18 +5,25 @@
  */
 namespace HyperfAdmin\Admin\Middleware;
 
+use FastRoute\Dispatcher;
 use Hyperf\HttpServer\Contract\RequestInterface;
 use Hyperf\HttpServer\Contract\ResponseInterface as HttpResponse;
 use Hyperf\HttpServer\CoreMiddleware;
+use Hyperf\HttpServer\Router\Dispatched;
 use Hyperf\Logger\LoggerFactory;
+use HyperfAdmin\Admin\Service\AuthService;
+use HyperfAdmin\Admin\Service\CommonConfig;
+use HyperfAdmin\Admin\Service\ModuleProxy;
+use HyperfAdmin\Admin\Service\PermissionService;
+use HyperfAdmin\BaseUtils\AKSK;
+use HyperfAdmin\BaseUtils\Constants\ErrorCode;
+use HyperfAdmin\BaseUtils\Guzzle;
+use HyperfAdmin\BaseUtils\Log;
+use HyperfAdmin\BaseUtils\Redis\Redis;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use HyperfAdmin\Admin\Service\PermissionService;
-use HyperfAdmin\Admin\Service\AuthService;
-use HyperfAdmin\BaseUtils\AKSK;
-use HyperfAdmin\BaseUtils\Constants\ErrorCode;
 
 class PermissionMiddleware extends CoreMiddleware
 {
@@ -61,6 +68,18 @@ class PermissionMiddleware extends CoreMiddleware
         $uri = $request->getUri();
         $path = $uri->getPath();
         $method = $request->getMethod();
+
+        $module_proxy = make(ModuleProxy::class);
+        if ($module_proxy->needProxy()) {
+            $res = $module_proxy->request();
+            if(isset($res['payload']) && $res['payload'] === []) {
+                $res['payload'] = (object)[];
+            }
+            $response = $this->response->json($res);
+            Log::get('http')->info('proxy_end', ['module' => $module_proxy->getTargetModule(), 'path' => $path, 'response' => $response]);
+            return $response;
+        }
+
         // 其他系统调用，走AKSK中间件验证
         $client_token = $request->getHeader('Authorization')[0] ?? '';
         if ($client_token) {

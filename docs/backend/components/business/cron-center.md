@@ -4,4 +4,11 @@
 
 作业必须基于`App\Util\CronCenter\ClassJobAbstract`, 或`App/Util/CronCenter/CommandJobAbstract.php`抽象类进行实现, 才可进行执行状态的跟踪
 
-`CronCenter`的实现基于`hyperf-crontab`进行实现, 具体代码在`app/Util/CronCenter`, 更多细节可查看[文档](https://hyperf.wiki/#/zh-cn/crontab)
+`CronCenter`的实现基于`hyperf-crontab`进行实现, 具体代码在`src/CronCenter`, 更多细节可查看[文档](https://hyperf.wiki/#/zh-cn/crontab)
+
+开启`cron-center` `config/autoload/crontab.php`
+```php
+[
+    "enable" => true
+]
+```

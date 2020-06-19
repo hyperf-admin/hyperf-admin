@@ -1,10 +1,9 @@
 <?php
 namespace HyperfAdmin\Admin\Controller;
 
-use HyperfAdmin\Admin\Model\ExportTasks;
+use Hyperf\Utils\Str;
 use HyperfAdmin\Admin\Service\CommonConfig;
-use HyperfAdmin\Admin\Service\ExportService;
-use HyperfAdmin\BaseUtils\Constants\ErrorCode;
+use HyperfAdmin\Admin\Service\ModuleProxy;
 
 class SystemController extends AdminAbstractController
 {
@@ -25,5 +24,20 @@ class SystemController extends AdminAbstractController
         ]);
 
         return $this->success($config);
+    }
+
+    public function routes()
+    {
+        $module_proxy = make(ModuleProxy::class);
+        if ($module_proxy->needProxy()) {
+            return $this->success($module_proxy->request()['payload']);
+        }
+
+        $kw = $this->request->input('kw', '');
+        $routes = $this->permission_service->getSystemRouteOptions();
+        $routes = array_filter($routes, function ($item) use ($kw) {
+            return Str::contains($item['value'], $kw);
+        });
+        return $this->success(array_values($routes));
     }
 }

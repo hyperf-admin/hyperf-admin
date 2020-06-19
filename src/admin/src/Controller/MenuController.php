@@ -194,11 +194,9 @@ class MenuController extends AdminAbstractController
                 'permission|权限标识' => [
                     'type' => 'select',
                     'default' => [],
-                    'options' => function ($field, $data) {
-                        return $this->permission_service->getSystemRouteOptions();
-                    },
                     'props' => [
                         'multiple' => true,
+                        'selectApi' => '/system/routes?module={module}'
                     ],
                 ],
                 'pid|上级类目' => [
@@ -272,7 +270,7 @@ class MenuController extends AdminAbstractController
                     [
                         'text' => '加子菜单',
                         'type' => 'form',
-                        'target' => '/menu/form?pid[]={id}&module={tab_id}',
+                        'target' => '/menu/form?pid[]={id}&module={module}',
                         'formUi' => [
                             'form' => [
                                 'labelWidth' => '80px',
@@ -330,6 +328,7 @@ class MenuController extends AdminAbstractController
                 'columns' => [
                     ['field' => 'id', 'hidden' => true],
                     ['field' => 'pid', 'hidden' => true],
+                    ['field' => 'module', 'hidden' => true],
                     [
                         'field' => 'label',
                         'width' => '250px',

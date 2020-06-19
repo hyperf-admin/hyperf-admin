@@ -3,6 +3,8 @@ namespace HyperfAdmin\BaseUtils;
 
 use GuzzleHttp\Client;
 use Hyperf\Guzzle\ClientFactory;
+use Psr\Http\Message\ServerRequestInterface;
+use GuzzleHttp\Cookie\CookieJar;
 
 class Guzzle
 {
@@ -74,6 +76,52 @@ class Guzzle
             ]);
 
             return false;
+        }
+    }
+
+    public static function proxy($url, ServerRequestInterface $request)
+    {
+        $client = self::create([
+            'timeout' => 10.0,
+        ]);
+
+        $options = [];
+
+        $logger = Log::get('module_proxy');
+
+        try {
+            $options['headers']['X-No-Proxy'] = true;
+
+            $options['headers'] = array_merge($options['headers'], array_map(function ($item) {
+                return $item[0];
+            }, request_header()));
+
+            $parse =parse_url($url);
+            $domain = isset($parse['port']) ? $parse['host'] . ':' . $parse['port'] : $parse['host'];
+            $options['cookies'] =  CookieJar::fromArray(cookie(), $domain);
+
+            if ($query = $request->getQueryParams()) {
+                $options['query'] = $query;
+            }
+            if ($body =  (array)json_decode($request->getBody()->getContents(), true)) {
+                $options['body'] = \GuzzleHttp\json_encode($body);
+            }
+            if ($form_data = $request->getParsedBody()) {
+                $options['form_params'] = $form_data;
+            }
+
+            $request = retry(3, function () use ($client, $request, $url, $options) {
+                return $client->request($request->getMethod(), $url, $options);
+            }, 50);
+            $content = $request->getBody()->getContents();
+            $logger->info('proxy_success', compact('url', 'options'));
+            return my_json_decode($content);
+        } catch (\GuzzleHttp\Exception\GuzzleException $e) {
+            $logger->error('proxy_fail', compact('url', 'options', 'e'));
+            throw new \Exception("proxy exception {$e}", 500);
+        } catch (\Throwable $e) {
+            $logger->error('proxy_fail', compact('url', 'options', 'e'));
+            throw new \Exception("proxy exception {$e}", 500);
         }
     }
 }

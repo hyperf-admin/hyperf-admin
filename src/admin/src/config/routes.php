@@ -38,3 +38,4 @@ register_route('/cconf', CommonConfigController::class, function ($controller) {
 });
 
 Router::get('/system/config', [SystemController::class, 'config']);
+Router::get('/system/routes', [SystemController::class, 'routes']);

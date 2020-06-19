@@ -69,3 +69,19 @@ php bin/hyperf.php
 然后将相应的菜单添加到后台即可使用.
 
 !> 这里的组件菜单, 后期可以优化成配置文件导入的方式, 会更简单些
+
+业务组件的db依赖问题, 参见 `src/cron-center/src/ConfigProvider.php` 中 `databases`
+
+```php
+'databases' => [
+    'config_center' => db_complete([
+        'host' => env('CONFIG_CENTER_DB_HOST', env('HYPERF_ADMIN_DB_HOST')),
+        'database' => env('CONFIG_CENTER_DB_NAME', env('HYPERF_ADMIN_DB_NAME')),
+        'username' => env('CONFIG_CENTER_DB_USER', env('HYPERF_ADMIN_DB_USER')),
+        'password' => env('CONFIG_CENTER_DB_PWD', env('HYPERF_ADMIN_DB_PWD')),
+    ]),
+],
+```
+
+组件可以使用自己单独的库配置, 默认使用 `hyperf_amdin` 的主db配置.
+

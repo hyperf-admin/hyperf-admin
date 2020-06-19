@@ -243,7 +243,8 @@ class PermissionService
             }
         }
         $user_open_apis = $this->getOpenResourceList('user_open_api');
-        return array_merge($resources, $user_open_apis);
+        $system_user_open = config('system.user_open_resource', ['/system/routes']);
+        return array_merge($resources, $user_open_apis, $system_user_open);
     }
 
     public function getOpenResourceList($field = 'open_api')
