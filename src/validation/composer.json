@@ -10,7 +10,7 @@
     ],
     "require": {
         "hyperf/validation": "^1.1",
-        "rock-admin/base-utils": "~0.0.1"
+        "rock-admin/base-utils": "dev-master"
     },
     "autoload": {
         "psr-4": {
