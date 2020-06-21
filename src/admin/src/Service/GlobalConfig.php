@@ -50,7 +50,7 @@ class GlobalConfig
         }
         $data = GlobalModel::query()->where('name', $name)->select('value')->first()->toArray();
         $data = $data ?: $default;
-        Redis::setex($cache_key, json_encode($data, JSON_UNESCAPED_UNICODE), 5 * MINUTE);
+        Redis::setex($cache_key, 5 * MINUTE, json_encode($data, JSON_UNESCAPED_UNICODE));
 
         return $data;
     }

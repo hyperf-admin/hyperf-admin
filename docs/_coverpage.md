@@ -1,4 +1,4 @@
-![logo](_media/icon.svg)
+![logo](./logo.jpg)
 
 # docsify
 

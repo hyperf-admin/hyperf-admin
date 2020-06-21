@@ -277,7 +277,7 @@ class PermissionService
             $this->processUserResource($route_collector, $user_id, $auth_type);
             $dispatch_data = $route_collector->getData();
             if(!empty($dispatch_data)) {
-                Redis::setex($cache_key, json_encode($dispatch_data), 86400);
+                Redis::setex($cache_key, DAY, json_encode($dispatch_data));
             }
         }
 

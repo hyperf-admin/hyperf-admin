@@ -29,7 +29,7 @@ class AuthService
             $expire = $payload['exp'] - time();
             if($user && $expire > 0) {
                 // 缓存用户信息
-                Redis::setex($cache_key, json_encode($user), $expire);
+                Redis::setex($cache_key, $expire, json_encode($user));
             }
         } else {
             $user = json_decode($user, true);
@@ -64,7 +64,7 @@ class AuthService
     {
         $user = $this->user();
         $cache_key = config('user_info_cache_prefix') . md5(json_encode($user));
-        Redis::connection()->del($cache_key);
+        Redis::del($cache_key);
         Context::set('user_info', null);
     }
 }

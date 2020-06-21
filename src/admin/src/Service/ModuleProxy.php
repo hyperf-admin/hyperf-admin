@@ -13,7 +13,7 @@ class ModuleProxy
     public function __construct()
     {
         $this->request = request();
-        $this->modules =  Redis::getOrSet('hyperf_admin:system_modules', 500, function () {
+        $this->modules =  Redis::conn()->getOrSet('hyperf_admin:system_modules', 500, function () {
             $list = CommonConfig::getConfigByName('website_config')['value']['system_module'];
             array_change_v2k($list, 'name');
             return $list;

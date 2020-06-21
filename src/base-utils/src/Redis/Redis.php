@@ -4,210 +4,91 @@ namespace HyperfAdmin\BaseUtils\Redis;
 use Hyperf\Redis\RedisFactory;
 use HyperfAdmin\BaseUtils\Log;
 
+/**
+ * @mixin \Redis
+ * @method static get($key)
+ * @method static set($key, $val)
+ * @method static setex($key, $ttl, $val)
+ */
 class Redis
 {
+    private $pool;
+
     /**
-     * @param string $name redis pool name
-     *
-     * @return \Redis
+     * @var \Redis
      */
-    public static function connection($name = 'default')
+    private $redis;
+
+    public function __construct($pool = 'default')
     {
-        return container(RedisFactory::class)->get($name);
+        $this->pool = $pool;
+        $this->redis = container(RedisFactory::class)->get($pool);
     }
 
-    public static function set($name, $value, $cluster = 'default')
+    public static function conn($pool = 'default')
     {
-        $redis = self::connection($cluster);
-        $start_time = microtime(true);
-        $re = $redis->set($name, $value);
-        $end_time = microtime(true);
-        Log::get('redis')->debug('set', [
-            'cluster' => $cluster,
-            'key' => $name,
-            'use_time' => $end_time - $start_time,
-            'result' => $re,
-        ]);
-
-        return $re;
+        return new self($pool);
     }
 
-    public static function setex($name, $value, $expire, $cluster = 'default')
+    public function __call($name, $arguments)
     {
-        $redis = self::connection($cluster);
-        $start_time = microtime(true);
-        $re = $redis->setex($name, $expire * 1, $value);
-        $end_time = microtime(true);
-        Log::get('redis')->debug('setex', [
-            'cluster' => $cluster,
-            'key' => $name,
-            'ttl' => $expire,
-            'use_time' => $end_time - $start_time,
-            'result' => $re,
-        ]);
-
-        return $re;
-    }
-
-    public static function get($name, $cluster = 'default')
-    {
-        $redis = self::connection($cluster);
-        $start_time = microtime(true);
-        $re = $redis->get($name);
-        $end_time = microtime(true);
-        Log::get('redis')->debug('get', [
-            'cluster' => $cluster,
-            'key' => $name,
-            'use_time' => $end_time - $start_time,
-            'result' => $re,
-        ]);
-
-        return $re;
-    }
-
-    public static function exists($name, $cluster = 'default')
-    {
-        $redis = self::connection($cluster);
-        $start_time = microtime(true);
-        $re = $redis->exists($name);
-        $end_time = microtime(true);
-        Log::get('redis')->debug('exist', [
-            'cluster' => $cluster,
-            'key' => $name,
-            'use_time' => $end_time - $start_time,
-            'result' => $re,
-        ]);
-
-        return $re;
-    }
-
-    public static function incr($key, $cluster = 'default')
-    {
-        $redis = self::connection($cluster);
-        $start_time = microtime(true);
-        $ret = $redis->incr($key);
-        $end_time = microtime(true);
-        Log::get('redis')->debug('incr', [
-            'cluster' => $cluster,
-            'key' => $key,
-            'use_time' => $end_time - $start_time,
-            'result' => $ret,
-        ]);
-
-        return $ret;
-    }
-
-    public static function incrBy($key, $value, $cluster = 'default')
-    {
-        $redis = self::connection($cluster);
-        $start_time = microtime(true);
-        $ret = $redis->incrBy($key, $value);
-        $end_time = microtime(true);
-        Log::get('redis')->debug('incrBy', [
-            'cluster' => $cluster,
-            'key' => $key,
-            'use_time' => $end_time - $start_time,
-            'result' => $ret,
-        ]);
-
-        return $ret;
-    }
-
-    public static function expire($key, $ttl, $cluster = 'default')
-    {
-        $redis = self::connection($cluster);
-        $start_time = microtime(true);
-        $ret = $redis->expire($key, $ttl);
-        $end_time = microtime(true);
-        Log::get('redis')->debug('expire', [
-            'cluster' => $cluster,
-            'key' => $key,
-            'use_time' => $end_time - $start_time,
-            'result' => $ret,
-        ]);
-
-        return $ret;
-    }
-
-    public static function ttl($key, $cluster = 'default')
-    {
-        $redis = self::connection($cluster);
-        $start_time = microtime(true);
-        $ret = $redis->ttl($key);
-        $end_time = microtime(true);
-        Log::get('redis')->debug('ttl', [
-            'cluster' => $cluster,
-            'key' => $key,
-            'use_time' => $end_time - $start_time,
-            'result' => $ret,
-        ]);
-
-        return $ret;
-    }
-
-    public static function beyondFrequency($key, $duration, $limit, $cluster = 'default')
-    {
-        $num = self::incr($key, $cluster);
-        if($num == 1) {
-            self::expire($key, $duration, $cluster);
+        if (method_exists($this, $name)) {
+            return $this->$name($arguments);
         }
-        $ttl = self::ttl($key, $cluster);
-        if($ttl == -1) {
-            self::expire($key, $duration, $cluster);
+
+        $start_time = microtime(true);
+        $ret = $this->redis->$name(...$arguments);
+        $end_time = microtime(true);
+        $use_time = round(($end_time - $start_time) * 1000, 2);
+        $level = $use_time > 100 ? 'error' : 'debug';
+        Log::get('redis')->$level('redis call ' . $name, [
+            'cluster' => $this->pool,
+            'key' => $name,
+            'use_time' => $use_time,
+        ]);
+
+        return $ret;
+    }
+
+    public static function __callStatic($name, $arguments)
+    {
+        return self::conn()->$name(...$arguments);
+    }
+
+    public function beyondFrequency($key, $duration, $limit)
+    {
+        $num = $this->redis->incr($key);
+        if ($num == 1) {
+            $this->redis->expire($key, $duration);
         }
-        if($num > $limit) {
+        $ttl = $this->redis->ttl($key);
+        if ($ttl == -1) {
+            $this->redis->expire($key, $duration);
+        }
+        if ($num > $limit) {
             return true;
         }
 
         return false;
     }
 
-    public static function hGet($key, $hashKey, $cluster = 'default')
-    {
-        $redis = self::connection($cluster);
-
-        return $redis->hGet($key, $hashKey);
-    }
-
-    public static function hSet($key, $hashKey, $value, $cluster = 'default')
-    {
-        $redis = self::connection($cluster);
-
-        return $redis->hSet($key, $hashKey, $value);
-    }
-
-    public static function hGetAll($key, $cluster = 'default')
-    {
-        $redis = self::connection($cluster);
-
-        return $redis->hGetAll($key);
-    }
-
-    public static function hMset($key, $value, $cluster = 'default')
-    {
-        $redis = self::connection($cluster);
-
-        return $redis->hMset($key, $value);
-    }
-
     /**
      * @param string $name
      * @param int    $expired
      * @param mixed  $callable
-     * @param string $cluster
      *
      * @return array|null
      */
-    public static function getOrSet(string $name, int $expired, callable $callable, $cluster = 'default')
+    public function getOrSet(string $name, int $expired, callable $callable)
     {
-        if(self::exists($name)) {
+        if ($this->redis->exists($name)) {
             Log::get('redis')->info(sprintf('get %s from cache', $name));
 
-            return json_decode(self::get($name, $cluster), true);
+            return json_decode($this->redis->get($name), true);
         }
         $data = call($callable);
-        if($data) {
-            self::setex($name, json_encode($data), $expired, $cluster);
+        if ($data) {
+            $this->redis->setex($name, $expired, json_encode($data));
         }
 
         return $data;
