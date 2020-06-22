@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace HyperfAdmin\BaseUtils\Middleware;
 
 use FastRoute\Dispatcher;
+use Hyperf\HttpMessage\Exception\NotFoundHttpException;
 use Hyperf\HttpServer\Router\Dispatched;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -37,8 +38,6 @@ class HttpLogMiddleware implements MiddlewareInterface
         $response = $handler->handle($request);
         /** @var Dispatched $dispatched */
         $dispatched = $request->getAttribute(Dispatched::class);
-        //获取method
-        $method = $request->getMethod();
         switch($dispatched->status) {
             case Dispatcher::NOT_FOUND:
                 Log::get('http')->warning(sprintf('%s not found', $path));
@@ -57,10 +56,9 @@ class HttpLogMiddleware implements MiddlewareInterface
                         'use_time' => 1000 * (microtime(true) - $start_time),
                         'response' => $response_content,
                     ];
-                    // 当路由存在时获取定义路由
-                    $route = $dispatched->handler->route;
                     Log::get('http')->info('resume', $msg);
                 }
+                throw new NotFoundHttpException();
                 break;
         }
 

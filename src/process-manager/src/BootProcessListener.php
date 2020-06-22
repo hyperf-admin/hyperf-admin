@@ -70,7 +70,7 @@ class BootProcessListener implements ListenerInterface
                 $instance = $process;
             }
             if ($instance instanceof ProcessInterface) {
-                $instance->isEnable() && $instance->bind($server);
+                $instance->isEnable($server) && $instance->bind($server);
             }
         }
     }

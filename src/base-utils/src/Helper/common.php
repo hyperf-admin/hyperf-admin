@@ -514,7 +514,7 @@ if (!function_exists('is_test')) {
 if (!function_exists('is_dev')) {
     function is_dev()
     {
-        return env('ENV') == 'dev';
+        return env('ENV', env('APP_ENV')) == 'dev';
     }
 }
 

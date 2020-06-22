@@ -2,20 +2,18 @@
 declare(strict_types=1);
 namespace HyperfAdmin\BaseUtils;
 
-use Dotenv\Dotenv;
-use Hyperf\Contract\ConfigInterface;
 use Hyperf\Contract\StdoutLoggerInterface;
-use Hyperf\Crontab\LoggerInterface;
 use Hyperf\HttpServer\Router\DispatcherFactory;
-use Hyperf\Utils\Str;
-use Monolog\Formatter\JsonFormatter;
-use Monolog\Logger;
 use HyperfAdmin\BaseUtils\Exception\HttpExceptionHandler;
 use HyperfAdmin\BaseUtils\Listener\BootAppConfListener as HABootAppConfListener;
 use HyperfAdmin\BaseUtils\Listener\DbQueryExecutedListener;
 use HyperfAdmin\BaseUtils\Listener\FetchModeListener;
 use HyperfAdmin\BaseUtils\Middleware\CorsMiddleware;
 use HyperfAdmin\BaseUtils\Middleware\HttpLogMiddleware;
+use Monolog\Formatter\JsonFormatter;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Hyperf\HttpServer\Exception\Handler\HttpExceptionHandler as HyperfHttpExceptionHandler;
 
 class ConfigProvider
 {
@@ -24,10 +22,10 @@ class ConfigProvider
         if (is_dev()) {
             $logger_default = [
                 'handler' => [
-                    'class' => HAStreamHandler::class,
+                    'class' => StreamHandler::class,
                     'constructor' => [
-                        'level' => Logger::INFO,
                         'stream' => 'php://stdout',
+                        'level' => Logger::DEBUG,
                     ],
                 ],
                 'formatter' => [
@@ -35,17 +33,18 @@ class ConfigProvider
                     'constructor' => [
                         'format' => "%datetime%||%channel%||%level_name%||%message%||%context%||%extra%\n",
                         'allowInlineLineBreaks' => true,
-                        'includeStacktraces' => true,
+                        'dateFormat' => 'Y-m-d H:i:s',
                     ],
                 ],
+                'processors' => [],
             ];
         } else {
             $logger_default = [
                 'handler' => [
                     'class' => RotatingFileHandler::class,
                     'constructor' => [
-                        'filename' => BASE_PATH . '/runtime/logs/app.log',
-                        'maxFiles' => 1,
+                        'filename' => BASE_PATH . '/runtime/logs/' . env('APP_NAME', 'hyperf-admin') . '.log',
+                        'maxFiles' => 2,
                         'level' => Logger::INFO,
                     ],
                 ],
@@ -53,6 +52,7 @@ class ConfigProvider
                     'class' => JsonFormatter::class,
                     'constructor' => [],
                 ],
+                'processors' => [],
             ];
         }
 
@@ -107,7 +107,8 @@ class ConfigProvider
             'exceptions' => [
                 'handler' => [
                     'http' => [
-                        HttpExceptionHandler::class
+                        HyperfHttpExceptionHandler::class,
+                        HttpExceptionHandler::class,
                     ],
                 ],
             ],

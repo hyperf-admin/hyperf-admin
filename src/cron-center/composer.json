@@ -10,11 +10,11 @@
         }
     ],
     "require": {
-        "hyperf/crontab": "^1.1",
-        "hyperf/process": "^1.1",
-        "hyperf/command": "^1.1",
-        "hyperf/event": "^1.1",
-        "rock-admin/base-utils": "~0.0.1"
+        "hyperf/crontab": "~2.0.0",
+        "hyperf/process": "~2.0.0",
+        "hyperf/command": "~2.0.0",
+        "hyperf/event": "~2.0.0",
+        "rock-admin/base-utils": "dev-master"
     },
     "autoload": {
         "psr-4": {

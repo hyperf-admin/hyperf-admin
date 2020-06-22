@@ -9,8 +9,8 @@
         }
     ],
     "require": {
-        "rock-admin/base-utils": "~0.0.1",
-        "rock-admin/validation": "~0.0.1"
+        "rock-admin/base-utils": "dev-master",
+        "rock-admin/validation": "dev-master"
     },
     "autoload": {
         "psr-4": {

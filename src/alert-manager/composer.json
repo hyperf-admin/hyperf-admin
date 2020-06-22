@@ -9,9 +9,9 @@
         }
     ],
     "require": {
-        "hyperf/async-queue": "^1.1",
-        "hyperf/process": "^1.1",
-        "rock-admin/rule-engine": "~0.0.1"
+        "hyperf/async-queue": "~2.0.0",
+        "hyperf/process": "~2.0.0",
+        "rock-admin/rule-engine": "dev-master"
     },
     "autoload": {
         "psr-4": {

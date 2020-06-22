@@ -10,10 +10,6 @@ use HyperfAdmin\BaseUtils\AliyunOSS;
 use HyperfAdmin\BaseUtils\Guzzle;
 use HyperfAdmin\BaseUtils\Log;
 
-if (file_exists(BASE_PATH . '/.env')) {
-    Dotenv\Dotenv::create([BASE_PATH])->load();
-}
-
 if(!function_exists('server')) {
     function server()
     {

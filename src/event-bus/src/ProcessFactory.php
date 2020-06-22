@@ -81,7 +81,7 @@ class ProcessFactory
                 $this->consumer->consume($this->message);
             }
 
-            public function isEnable(): bool
+            public function isEnable($server): bool
             {
                 return $this->message->isEnable();
             }
@@ -125,7 +125,7 @@ class ProcessFactory
                 }, $this->instance);
             }
 
-            public function isEnable(): bool
+            public function isEnable($server): bool
             {
                 return true;
             }

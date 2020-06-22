@@ -9,8 +9,8 @@
         }
     ],
     "require": {
-        "hyperf/process": "^1.1",
-        "hyperf/amqp": "^1.1"
+        "hyperf/process": "~2.0.0",
+        "hyperf/amqp": "~2.0.0"
     },
     "autoload": {
         "psr-4": {

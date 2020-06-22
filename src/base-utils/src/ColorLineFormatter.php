@@ -11,7 +11,7 @@ class ColorLineFormatter extends LineFormatter
         'WARNING' => "\e[0;33m{log_str}\e[0m",
     ];
 
-    public function format(array $record)
+    public function format(array $record): string
     {
         $log = parent::format($record);
 
