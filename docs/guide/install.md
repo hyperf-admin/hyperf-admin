@@ -28,6 +28,7 @@ cd hyperf-admin
 rm config/autoload/logger.php
 # 设置基础环境配置 .env 具体见下方
 # hyperf-admin 为分包的模式, 此处引入的是完整仓库, 实际项目请按需引入
+# 若全部引入需要安全全部的db依赖 详见 https://github.com/hyperf-admin/hyperf-admin-demo/tree/master/docker/db
 composer require hyperf-admin/hyperf-admin
 composer i
 # 启动 热重启参考 https://github.com/daodao97/hyperf-watch
