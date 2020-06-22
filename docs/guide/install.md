@@ -35,7 +35,7 @@ composer i
 composer watch
 ```
 
-`.evn`
+`.env`
 ```bash
 APP_NAME=hyperf-admin
 ENV=dev
