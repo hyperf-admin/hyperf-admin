@@ -34,6 +34,8 @@ composer i
 # validation 依赖
 php bin/hyperf.php vendor:publish hyperf/translation
 php bin/hyperf.php vendor:publish hyperf/validation
+
+# 这只项目秘钥, 见下面 password.salt
 # 启动 热重启参考 https://github.com/daodao97/hyperf-watch
 composer watch
 ```
@@ -55,6 +57,16 @@ HYPERF_ADMIN_DB_USER=root
 HYPERF_ADMIN_DB_PWD=root
 
 LOCAL_DB_HOST=localhost
+```
+
+`password.salt`
+```php
+// config/config.php
+
+'password' => [
+    'salt' => env('HYPERF_ADMIN_PWD_SALT', 'c093d70f088499c3a837cae00c042f14'),
+ ],
+
 ```
 
 ## nginx配置
