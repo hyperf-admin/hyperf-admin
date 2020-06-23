@@ -11,7 +11,7 @@ docker-compose up
 
 浏览器打开 `http://127.0.0.1:8081/default/#/dashboard` 即可访问
 
-默认账号 ` daodao97`, 密码 `a1a1a1`
+默认账号 ` daodao`, 密码 `a1a1a1`
 
 ### 2. 无 docker 启动
 
