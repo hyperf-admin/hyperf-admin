@@ -31,6 +31,9 @@ rm config/autoload/logger.php
 # 若全部引入需要安全全部的db依赖 详见 https://github.com/hyperf-admin/hyperf-admin-demo/tree/master/docker/db
 composer require hyperf-admin/hyperf-admin
 composer i
+# validation 依赖
+php bin/hyperf.php vendor:publish hyperf/translation
+php bin/hyperf.php vendor:publish hyperf/validation
 # 启动 热重启参考 https://github.com/daodao97/hyperf-watch
 composer watch
 ```
