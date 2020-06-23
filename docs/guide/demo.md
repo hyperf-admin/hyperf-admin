@@ -11,6 +11,8 @@ docker-compose up
 
 浏览器打开 `http://127.0.0.1:8081/default/#/dashboard` 即可访问
 
+默认账号 ` daodao97`, 密码 `a1a1a1`
+
 ### 2. 无 docker 启动
 
 首先将 `docker/db` 下的 `sql` 文件添加的本地 `mysql` 中
