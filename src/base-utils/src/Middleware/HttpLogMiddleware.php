@@ -58,7 +58,6 @@ class HttpLogMiddleware implements MiddlewareInterface
                     ];
                     Log::get('http')->info('resume', $msg);
                 }
-                throw new NotFoundHttpException();
                 break;
         }
 
