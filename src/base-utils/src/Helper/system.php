@@ -187,6 +187,8 @@ if(!function_exists('db_complete')) {
             'options' => [
                 PDO::ATTR_STRINGIFY_FETCHES => false,
             ],
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
             'pool' => [
                 'min_connections' => 1,
                 'max_connections' => 20,

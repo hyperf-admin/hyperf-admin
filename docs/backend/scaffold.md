@@ -184,46 +184,48 @@ public function scaffoldOptions()
         ....
         // 表单配置
         'form' => [
-            // 字段验证规则 
-            // 请参考 https://hyperf.wiki/#/zh-cn/validation?id=%e9%aa%8c%e8%af%81%e8%a7%84%e5%88%99
-            'rule' => 'required|max:10',
-            // 请参考 http://www.form-create.com/v2/element-ui/components/input.html
-            'type' => 'input',
-            // 表单默认值
-            'default' => '',
-            'info' => '字段备注',
-            // 只读属性，当编辑时有效
-            'readonly' => true,
-            // 表单选项，只有支持options选项的组件设置才有效，可以定义一个callback方法，可以参考formOptionsConvert方法
-            'options' => [],
-            // 其他组件属性，请参考具体组件的props的定义
-            'props' => [],
-            // 定义依赖项
-            'depend' => [
-                'field' => 'target_type',
-                'value' => [],
-            ],
-            // col 布局规则 http://www.form-create.com/v2/element-ui/col.html
-            'col' => [
-                // 表单长度
-                'span' => 12,
-                // 标签宽度
-                'labelWidth' => 150,
-            ],
-            // 动态修改其他字段规则 详见下方联动小节
-            'compute' => [
-                "will_set_field" => [
-                    "when" => ['=', 1],
-                    "set" => [
-                      //
+            'field|field_label' => [
+                // 字段验证规则 
+                // 请参考 https://hyperf.wiki/#/zh-cn/validation?id=%e9%aa%8c%e8%af%81%e8%a7%84%e5%88%99
+                'rule' => 'required|max:10',
+                // 请参考 http://www.form-create.com/v2/element-ui/components/input.html
+                'type' => 'input',
+                // 表单默认值
+                'default' => '',
+                'info' => '字段备注',
+                // 只读属性，当编辑时有效
+                'readonly' => true,
+                // 表单选项，只有支持options选项的组件设置才有效，可以定义一个callback方法，可以参考formOptionsConvert方法
+                'options' => [],
+                // 其他组件属性，请参考具体组件的props的定义
+                'props' => [],
+                // 定义依赖项
+                'depend' => [
+                    'field' => 'target_type',
+                    'value' => [],
+                ],
+                // col 布局规则 http://www.form-create.com/v2/element-ui/col.html
+                'col' => [
+                    // 表单长度
+                    'span' => 12,
+                    // 标签宽度
+                    'labelWidth' => 150,
+                ],
+                // 动态修改其他字段规则 详见下方联动小节
+                'compute' => [
+                    "will_set_field" => [
+                        "when" => ['=', 1],
+                        "set" => [
+                          //
+                        ]
                     ]
-                ]
-            ],
-            // 该字段规则回调方法，可以用于重置字段规则
-            'render' => function () {
-            },
-            // 开启input框的复制功能
-            'copy_show' => true,
+                ],
+                // 该字段规则回调方法，可以用于重置字段规则
+                'render' => function () {
+                },
+                // 开启input框的复制功能
+                'copy_show' => true,
+            ]
         ],
     ];
 }
