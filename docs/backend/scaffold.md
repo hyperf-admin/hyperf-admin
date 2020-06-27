@@ -115,7 +115,6 @@ class IndexController extends AdminAbstractController
                                 'size' => 'mini',
                                 'type' => 'success',
                             ],
-                            // 勿动!! 选品页面是监听点击事件同当前 text 比对.
                             'text' => '点我更新',
                             'type' => 'native',
                         ]

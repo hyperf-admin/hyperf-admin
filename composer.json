@@ -53,30 +53,30 @@
     },
     "autoload": {
         "psr-4": {
-            "HyperfAdmin\\BaseUtils\\": "./src/base-utils/src",
-            "HyperfAdmin\\Admin\\": "./src/admin/src",
-            "HyperfAdmin\\AlertManager\\": "./src/alert-manager/src",
-            "HyperfAdmin\\CronCenter\\": "./src/cron-center/src",
-            "HyperfAdmin\\DataFocus\\": "./src/data-focus/src",
-            "HyperfAdmin\\DevTools\\": "./src/dev-tools/src",
-            "HyperfAdmin\\EventBus\\": "./src/event-bus/src",
-            "HyperfAdmin\\ProcessManager\\": "./src/process-manager/src",
-            "HyperfAdmin\\RuleEngine\\": "./src/rule-engine/src",
-            "HyperfAdmin\\Validation\\": "./src/validation/src",
-            "HyperfAdmin\\ConfigCenter\\": "./src/config-center/src"
+            "HyperfAdmin\\BaseUtils\\": "src/base-utils/src",
+            "HyperfAdmin\\Admin\\": "src/admin/src",
+            "HyperfAdmin\\AlertManager\\": "src/alert-manager/src",
+            "HyperfAdmin\\CronCenter\\": "src/cron-center/src",
+            "HyperfAdmin\\DataFocus\\": "src/data-focus/src",
+            "HyperfAdmin\\DevTools\\": "src/dev-tools/src",
+            "HyperfAdmin\\EventBus\\": "src/event-bus/src",
+            "HyperfAdmin\\ProcessManager\\": "src/process-manager/src",
+            "HyperfAdmin\\RuleEngine\\": "src/rule-engine/src",
+            "HyperfAdmin\\Validation\\": "src/validation/src",
+            "HyperfAdmin\\ConfigCenter\\": "src/config-center/src"
         },
         "files": [
-            "./src/base-utils/src/Helper/array.php",
-            "./src/base-utils/src/Helper/common.php",
-            "./src/base-utils/src/Helper/constants.php",
-            "./src/base-utils/src/Helper/system.php",
-            "./src/data-focus/src/Util/func.php",
-            "./src/event-bus/src/funcs.php",
-            "./src/admin/src/funcs/common.php",
-            "./src/data-focus/src/Util/SimpleHtmlDom.php"
+            "src/base-utils/src/Helper/array.php",
+            "src/base-utils/src/Helper/common.php",
+            "src/base-utils/src/Helper/constants.php",
+            "src/base-utils/src/Helper/system.php",
+            "src/data-focus/src/Util/func.php",
+            "src/event-bus/src/funcs.php",
+            "src/admin/src/funcs/common.php",
+            "src/data-focus/src/Util/SimpleHtmlDom.php"
         ],
         "classmap": [
-            "./src/base-utils/src/classmap"
+            "src/base-utils/src/classmap"
         ]
     },
     "extra": {
