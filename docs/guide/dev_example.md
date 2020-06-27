@@ -23,7 +23,7 @@ CREATE TABLE `student_score` (
   `subject` tinyint(4) unsigned NOT NULL COMMENT '学科',
   `score` int(12) unsigned NOT NULL DEFAULT '0' COMMENT '分数',
   `name` varchar(10) NOT NULL DEFAULT '' COMMENT '学生名称',
-  `sex` tinyint(4) unsigned NOT NULL DEFAULT '0' COMMENT '性别, 0女生, 1难受',
+  `sex` tinyint(4) unsigned NOT NULL DEFAULT '0' COMMENT '性别, 0女生, 1男生',
   `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
