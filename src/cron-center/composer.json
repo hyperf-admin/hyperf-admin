@@ -1,5 +1,5 @@
 {
-    "name": "rock-admin/cron-center",
+    "name": "hyperf-admin/cron-center",
     "description": "hyperf crontab manager",
     "type": "library",
     "license": "MIT",
@@ -14,7 +14,7 @@
         "hyperf/process": "~2.0.0",
         "hyperf/command": "~2.0.0",
         "hyperf/event": "~2.0.0",
-        "rock-admin/base-utils": "dev-master"
+        "hyperf-admin/base-utils": "dev-master"
     },
     "autoload": {
         "psr-4": {

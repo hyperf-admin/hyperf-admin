@@ -1,5 +1,5 @@
 {
-    "name": "rock-admin/admin",
+    "name": "hyperf-admin/admin",
     "type": "project",
     "license": "MIT",
     "authors": [
@@ -9,8 +9,8 @@
         }
     ],
     "require": {
-        "rock-admin/base-utils": "dev-master",
-        "rock-admin/validation": "dev-master"
+        "hyperf-admin/base-utils": "dev-master",
+        "hyperf-admin/validation": "dev-master"
     },
     "autoload": {
         "psr-4": {

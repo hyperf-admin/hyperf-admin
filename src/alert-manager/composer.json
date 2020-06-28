@@ -1,5 +1,5 @@
 {
-    "name": "rock-admin/alert-manager",
+    "name": "hyperf-admin/alert-manager",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -11,7 +11,7 @@
     "require": {
         "hyperf/async-queue": "~2.0.0",
         "hyperf/process": "~2.0.0",
-        "rock-admin/rule-engine": "dev-master"
+        "hyperf-admin/rule-engine": "dev-master"
     },
     "autoload": {
         "psr-4": {

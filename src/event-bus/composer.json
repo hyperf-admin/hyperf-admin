@@ -1,5 +1,5 @@
 {
-    "name": "rock-admin/event-bus",
+    "name": "hyperf-admin/event-bus",
     "type": "library",
     "license": "MIT",
     "authors": [

@@ -1,5 +1,5 @@
 {
-    "name": "rock-admin/data-focus",
+    "name": "hyperf-admin/data-focus",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "rock-admin/admin": "dev-master",
+        "hyperf-admin/admin": "dev-master",
         "nette/php-generator": "^3.4"
     },
     "autoload": {

@@ -1,5 +1,5 @@
 {
-    "name": "rock-admin/base-utils",
+    "name": "hyperf-admin/base-utils",
     "type": "project",
     "license": "MIT",
     "authors": [
