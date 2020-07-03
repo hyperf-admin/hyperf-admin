@@ -48,7 +48,7 @@ class TableSchema
     {
         $builder = $this->getSchemaBuilder($pool);
         $ret = $builder->getConnection()
-            ->select("select table_name from information_schema.tables where table_schema=? and table_type='base table';", [
+            ->select("select table_name from information_schema.tables where table_schema=? and table_type='BASE TABLE';", [
                 $database,
             ]);
 
