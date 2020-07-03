@@ -296,13 +296,13 @@ class DevController extends AbstractController
         $ret = [];
         $ignores = ['id', 'create_at', 'update_at', 'is_deleted'];
         foreach ($schema as $item) {
-            if (in_array($item['column_name'], $ignores)) {
+            if (in_array($item['COLUMN_NAME'], $ignores)) {
                 continue;
             }
             $ret[] = [
-                'field' => $item['column_name'],
-                'label' => $item['column_comment'],
-                'type' => $this->transType($item['data_type']),
+                'field' => $item['COLUMN_NAME'],
+                'label' => $item['COLUMN_COMMENT'],
+                'type' => $this->transType($item['DATA_TYPE']),
             ];
         }
 
@@ -316,6 +316,10 @@ class DevController extends AbstractController
                 return 'datetime';
             case 'bigint':
                 return 'number';
+            case 'text':
+                return 'html';
+            case 'enum':
+                return 'radio';
             default:
                 return 'input';
         }

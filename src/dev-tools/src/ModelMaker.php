@@ -22,7 +22,7 @@ class ModelMaker extends AbstractMaker
             return false;
         }
         $columns = array_values(array_filter(array_map(function ($item) {
-            if(in_array($item['column_name'], [
+            if(in_array($item['COLUMN_NAME'], [
                 'create_at',
                 'update_at',
                 'is_deleted',
@@ -30,7 +30,7 @@ class ModelMaker extends AbstractMaker
                 return null;
             }
 
-            return $item['column_name'];
+            return $item['COLUMN_NAME'];
         }, $schema)));
         $class_namespace = $this->pathToNamespace($path) . '\\' . Str::studly($database);
         $class_name = Str::studly($table);
@@ -68,10 +68,10 @@ class ModelMaker extends AbstractMaker
 
     protected function getProperty($column): array
     {
-        $name = $column['column_name'];
-        $type = $this->formatPropertyType($column['data_type'], $column['cast'] ?? null);
+        $name = $column['COLUMN_NAME'];
+        $type = $this->formatPropertyType($column['DATA_TYPE'], $column['cast'] ?? null);
 
-        return [$name, $type, $column['column_comment']];
+        return [$name, $type, $column['COLUMN_COMMENT']];
     }
 
     protected function formatDatabaseType(string $type): ?string
