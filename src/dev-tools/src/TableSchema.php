@@ -25,7 +25,7 @@ class TableSchema
         $builder = $this->getSchemaBuilder($pool);
 
         return $builder->getConnection()
-            ->select('select `column_name`, `data_type`, `column_comment` from information_schema.columns where `table_schema` = ? and `table_name` = ? order by ORDINAL_POSITION', [
+            ->select('select `COLUMN_NAME`, `DATA_TYPE`, `COLUMN_COMMENT` from information_schema.COLUMNS where `TABLE_SCHEMA` = ? and `TABLE_NAME` = ? order by ORDINAL_POSITION', [
                 $database,
                 $table_name,
             ]);
@@ -48,11 +48,11 @@ class TableSchema
     {
         $builder = $this->getSchemaBuilder($pool);
         $ret = $builder->getConnection()
-            ->select("select table_name from information_schema.tables where table_schema=? and table_type='BASE TABLE';", [
+            ->select("select TABLE_NAME from information_schema.tables where table_schema=? and table_type='BASE TABLE';", [
                 $database,
             ]);
 
-        return array_column($ret ?? [], 'table_name');
+        return array_column($ret ?? [], 'TABLE_NAME');
     }
 
     public function tableDesign($pool, $database, $table_name)
