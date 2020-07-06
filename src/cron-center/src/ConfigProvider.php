@@ -19,6 +19,8 @@ class ConfigProvider
                     'database' => env('CRON_CENTER_DB_NAME', env('HYPERF_ADMIN_DB_NAME')),
                     'username' => env('CRON_CENTER_DB_USER', env('HYPERF_ADMIN_DB_USER')),
                     'password' => env('CRON_CENTER_DB_PWD', env('HYPERF_ADMIN_DB_PWD')),
+                    'prefix' => env('CRON_CENTER_DB_PREFIX', env('HYPERF_ADMIN_DB_PREFIX')),
+
                 ]),
             ],
             'commands' => [

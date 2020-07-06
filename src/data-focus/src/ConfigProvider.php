@@ -16,6 +16,8 @@ class ConfigProvider
                     'database' => env('DATA_FOCUS_DB_NAME', env('HYPERF_ADMIN_DB_NAME')),
                     'username' => env('DATA_FOCUS_DB_USER', env('HYPERF_ADMIN_DB_USER')),
                     'password' => env('DATA_FOCUS_DB_PWD', env('HYPERF_ADMIN_DB_PWD')),
+                    'prefix' => env('DATA_FOCUS_DB_PREFIX', env('HYPERF_ADMIN_DB_PREFIX')),
+
                 ]),
             ],
             'commands' => [

@@ -25,7 +25,7 @@ class ConfigProvider
                     'class' => StreamHandler::class,
                     'constructor' => [
                         'stream' => 'php://stdout',
-                        'level' => Logger::DEBUG,
+                        'level' => Logger::INFO,
                     ],
                 ],
                 'formatter' => [

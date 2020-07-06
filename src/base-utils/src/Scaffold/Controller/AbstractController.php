@@ -893,8 +893,8 @@ abstract class AbstractController extends Controller
                 && isset($_form['options'])) {
                 $_form['type'] = 'select';
                 unset($_form['value']);
-                $options_lables = array_column($_form['options'], 'label');
-                if (!isset($_form['props']['selectApi']) && !in_array('全部', $options_lables)) {
+                $options_labels = array_column($_form['options'], 'label');
+                if (!isset($_form['props']['selectApi']) && !in_array('全部', $options_labels)) {
                     array_unshift($_form['options'], [
                         'value' => '',
                         'label' => '全部',
