@@ -1,3 +1,5 @@
+?> 如果仅是体验该项目, 强烈推荐 [demo](https://hyperf-admin.github.io/hyperf-admin/#/guide/demo) 部分文档, 一键启动
+
 ## 前端
 
 ```shell
@@ -106,3 +108,7 @@ server {
     }
 }
 ```
+
+浏览器打开 [http://youdomain.com:8081/default/#/dashboard](http://youdomain.com:8081/default/#/dashboard) 即可访问
+
+默认账号 ` daodao`, 密码 `a1a1a1`

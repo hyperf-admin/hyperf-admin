@@ -130,7 +130,35 @@ type：表单项类型，以下是支持的组件列表，以下所有组件 pro
 ]
 ```
 
-### 6. 时间控件
+### 6. 单选框
+
+```php
+[
+  "field_name|字段名" => [
+    "type" => "radio",
+    "options" => [
+      	value1 => "label1",
+        value2 => "label2"
+    ]
+  ]
+]
+```
+
+### 7.复选框
+
+```php
+[
+  "field_name|字段名" => [
+    "type" => "checkbox",
+    "options" => [
+      	value1 => "label1",
+        value2 => "label2"
+    ]
+  ]
+]
+```
+
+### 8. 时间控件
 
 [原始文档](http://www.form-create.com/v2/iview/components/date-picker.html)
 
@@ -142,7 +170,7 @@ type：表单项类型，以下是支持的组件列表，以下所有组件 pro
 ]
 ```
 
-### 7. 时间区间
+### 9. 时间区间
 
 [原始文档](http://www.form-create.com/v2/iview/components/date-picker.html)
 
@@ -162,7 +190,7 @@ type：表单项类型，以下是支持的组件列表，以下所有组件 pro
 ]
 ```
 
-### 8. 日期
+### 10. 日期
 
 [原始文档](http://www.form-create.com/v2/iview/components/date-picker.html)
 
@@ -174,7 +202,7 @@ type：表单项类型，以下是支持的组件列表，以下所有组件 pro
 ]
 ```
 
-### 9. 日期区间
+### 11. 日期区间
 
 [原始文档](http://www.form-create.com/v2/iview/components/date-picker.html)
 
@@ -186,7 +214,7 @@ type：表单项类型，以下是支持的组件列表，以下所有组件 pro
 ]
 ```
 
-### 10. 下拉选择框
+### 12. 下拉选择框
 
 [原始文档](http://www.form-create.com/v2/iview/components/select.html)
 
@@ -207,7 +235,7 @@ type：表单项类型，以下是支持的组件列表，以下所有组件 pro
 ]
 ```
 
-### 11. 上传图片
+### 13. 上传图片
 
 [原始文档](http://www.form-create.com/v2/iview/components/upload.html)
 
@@ -233,7 +261,7 @@ type：表单项类型，以下是支持的组件列表，以下所有组件 pro
 ]
 ```
 
-### 12. 上传文件
+### 14. 上传文件
 
 [原始文档](http://www.form-create.com/v2/iview/components/upload.html)
 
@@ -255,7 +283,7 @@ type：表单项类型，以下是支持的组件列表，以下所有组件 pro
 ]
 ```
 
-### 13. 级联选择器
+### 15. 级联选择器
 
 ```php
 [
@@ -268,7 +296,7 @@ type：表单项类型，以下是支持的组件列表，以下所有组件 pro
 ]
 ```
 
-### 14. json 组件
+### 16. json 组件
 
 ```php
 [
@@ -278,7 +306,7 @@ type：表单项类型，以下是支持的组件列表，以下所有组件 pro
 ]
 ```
 
-### 15. 富文本
+### 17. 富文本
 
 ```php
 [
@@ -288,7 +316,7 @@ type：表单项类型，以下是支持的组件列表，以下所有组件 pro
 ]
 ```
 
-### 16. 图标选择器
+### 18. 图标选择器
 
 ```php
 [
@@ -302,7 +330,7 @@ type：表单项类型，以下是支持的组件列表，以下所有组件 pro
 
 ![icon](http://qupinapptest.oss-cn-beijing.aliyuncs.com/1/202005/9e62be2e0affafc0cdee8bc7fba3c0fd.png)
 
-### 17. 嵌套表单 SubForm
+### 19. 嵌套表单 SubForm
 
 ```php
 'test|嵌套表单' => [
@@ -329,7 +357,7 @@ type：表单项类型，以下是支持的组件列表，以下所有组件 pro
 
 ![subForm](http://qupinapptest.oss-cn-beijing.aliyuncs.com/img/Snipaste_2020-02-21_19-29-35.png)
 
-### 18. 区域输入框
+### 20. 区域输入框
 
 [前端文档](http://localhost:8080/hyperfdoc/frontend/components/3_InputRange.html)
 
