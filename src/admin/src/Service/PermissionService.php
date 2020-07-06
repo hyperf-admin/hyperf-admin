@@ -332,7 +332,7 @@ class PermissionService
             return false;
         }
         $controllerInstance = container($controller);
-        if (in_array($action, $controllerInstance->open_resources)) {
+        if (isset($controllerInstance->open_resources) && in_array($action, $controllerInstance->open_resources)) {
             return true;
         }
 
