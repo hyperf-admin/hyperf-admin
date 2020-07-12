@@ -26,7 +26,8 @@ class ControllerMaker extends AbstractMaker
         if(!$form) {
             return false;
         }
-        $options = $this->optionsMake($config, strtolower($model_name));
+        $route = $this->splitToRouteName($model_name);
+        $options = $this->optionsMake($config, $route);
         $class->addMethod('scaffoldOptions')->setBody("return " . $this->arrayStr($options) . ";");
         foreach($config['init_hooks'] as $item) {
             $class->addMethod($item)->setParameters($this->hooksParameter($item));
@@ -37,6 +38,11 @@ class ControllerMaker extends AbstractMaker
         }
 
         return $class_namespace . '\\n' . $controller_name;
+    }
+
+    public function splitToRouteName($greatHumpStr){
+        $arr = preg_split('/(?<=[a-z0-9])(?=[A-Z])/x', $greatHumpStr);
+        return strtolower(implode("_", $arr));
     }
 
     public function hooksParameter($hook_name)
