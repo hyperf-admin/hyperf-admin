@@ -262,7 +262,7 @@ class UserController extends AdminAbstractController
         $task->filters = array_filter($this->request->input('filters'), function ($item) {
             return $item !== '';
         });
-        $task->operator_id = $this->user()['id'] ?? 0;
+        $task->operator_id = $this->userId() ?? 0;
         if ((new ExportService())->getFirstSameTask($task->list_api, $task->filters, $task->operator_id)) { // 如果当天已经有相同过滤条件且还未成功生成文件的任务
             return $this->success([], '已经有相同的任务，请勿重复导出');
         }
