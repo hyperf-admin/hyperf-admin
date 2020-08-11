@@ -23,7 +23,7 @@ npm run build:test
 ## 后端
 
 ```shell
-# 环境依赖 php ^7.1 composer swoole 
+# 环境依赖 php ^7.2 composer swoole 
 composer create-project hyperf/hyperf-skeleton hyperf-admin
 cd hyperf-admin
 # 移除日志配置, admin 底层已配置
@@ -66,7 +66,7 @@ LOCAL_DB_HOST=localhost
 // config/config.php
 
 'password' => [
-    'salt' => env('HYPERF_ADMIN_PWD_SALT', 'c093d70f088499c3a837cae00c042f14'),
+    'salt' => env('HYPERF_ADMIN_PWD_SALT', 'c093d70f088499c3a837cae00c042f14'), // 用 md5(time()) 获取 salt
  ],
 
 ```
@@ -80,7 +80,7 @@ upstream backend {
 
 server {
     listen 80;
-    server_name hyperf-admin.com;
+    server_name hyperf-admin.com; # 设置自己的 domain
     index index.html;
     root /opt/www/hyperf-admin-front/dist;
     access_log /usr/local/var/log/nginx/hyperf-admin.access.log;
