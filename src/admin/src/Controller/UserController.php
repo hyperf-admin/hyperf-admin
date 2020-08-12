@@ -90,9 +90,9 @@ class UserController extends AdminAbstractController
                     'type' => 'date_range',
                 ],
             ],
-            'hasOne' => [
-                'hyperf_admin.hyperf_admin.user_role:user_id,role_id',
-            ],
+            'hasOne' => function ($field, $row) {
+                return 'hyperf_admin.'.env('HYPERF_ADMIN_DB_NAME').'.user_role:user_id,role_id';
+            },
             'table' => [
                 'columns' => [
                     'id',
