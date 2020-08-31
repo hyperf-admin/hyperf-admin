@@ -110,6 +110,8 @@ abstract class AbstractController extends Controller
                     'group' => $this->options['table']['group'] ?? [],
                 ],
                 'noticeAble' => !empty($this->options['notices'] ?? []),
+                'page'=>$this->options['table']['page'] ?? []
+
             ],
         ];
         if (method_exists($this, 'beforeInfo')) {
