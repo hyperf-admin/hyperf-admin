@@ -344,7 +344,7 @@ abstract class AbstractController extends Controller
 
     public function explodeHasStr($has_str)
     {
-        $check = preg_match('/([a-zA-Z_]+\.)?([a-zA-Z_]+)\.([a-zA-Z_]+):([a-zA-Z_0-9]+->)?([a-zA-Z_,0-9 ]+)/', $has_str, $match);
+        $check = preg_match('/([a-zA-Z_0-9]+\.)?([a-zA-Z_0-9]+)\.([a-zA-Z_0-9]+):([a-zA-Z_0-9]+->)?([a-zA-Z_,0-9 ]+)/', $has_str, $match);
         if ($check === 0) {
             return false;
         }
