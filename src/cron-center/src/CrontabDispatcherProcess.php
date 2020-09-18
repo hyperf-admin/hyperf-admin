@@ -39,6 +39,9 @@ class CrontabDispatcherProcess extends ProcessCrontabDispatcherProcess
 
     public function handle(): void
     {
+        if (!config('cron_center.enable', false)) {
+            return;
+        }
         $this->event->dispatch(new CrontabDispatcherStarted());
         while (true) {
             $this->cron_manager->createOrUpdateNode();

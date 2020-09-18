@@ -20,7 +20,7 @@ class UpdateCommand extends HyperfCommand
 
     public function handle()
     {
-        $version = $input->getArgument('version');
+        $version = $this->input->getArgument('version');
         $db_conf = config('databases.hyperf_admin');
         if (!$db_conf || !$db_conf['host']) {
             $this->output->error('place set hyperf_admin db config in env');

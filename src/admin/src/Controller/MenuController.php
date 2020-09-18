@@ -60,7 +60,7 @@ class MenuController extends AdminAbstractController
                             'when' => ['=', 1],
                             'set' => [
                                 'path' => [
-                                    'rule' => 'required',
+                                    'rule' => 'requir渲染方式ed',
                                 ],
                                 'label' => [
                                     'title' => '菜单标题',
@@ -148,6 +148,7 @@ class MenuController extends AdminAbstractController
                     'options' => [
                         1 => '脚手架',
                         0 => '自定义',
+                        2 => '配置化脚手架',
                     ],
                     'default' => 1,
                     'col' => [
@@ -161,6 +162,13 @@ class MenuController extends AdminAbstractController
                             ],
                         ],
                     ],
+                ],
+                'config|脚手架配置' => [
+                    "type" => 'json',
+                    'depend' => [
+                        'field' => 'is_scaffold',
+                        'value' => 2
+                    ]
                 ],
                 'view|组件路径' => [
                     'rule' => 'string|max:50',
@@ -395,7 +403,9 @@ class MenuController extends AdminAbstractController
             $data['path'] = '#';
         }
         $data['is_menu'] = $data['type'] == 2 ? 0 : $data['is_menu'];
-        $data['permission'] = implode(',', $data['permission'] ?? []);
+        if ($data['permission']) {
+            $data['permission'] = implode(',', $data['permission'] ?? []);
+        }
         $pid = array_pop($data['pid']);
         if ($pid == $id) {
             $pid = array_pop($data['pid']);

@@ -11,6 +11,7 @@
   * [按钮详解](backend/super-button.md)
   * [脚手架实体](backend/scaffold_entity.md)
   * [多模块模式](backend/remote_module.md)
+  * [远程脚手架](backend/remote_scaffold.md)
   * [通用配置](backend/common-config.md)
   * [辅助函数](backend/functions.md)
 * 业务组件

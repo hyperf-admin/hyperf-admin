@@ -39,3 +39,9 @@ register_route('/cconf', CommonConfigController::class, function ($controller) {
 
 Router::get('/system/config', [SystemController::class, 'config']);
 Router::get('/system/routes', [SystemController::class, 'routes']);
+Router::get('/system/proxy', [SystemController::class, 'proxy']);
+Router::get('/system/list_info/{id:\d+}', [SystemController::class, 'listInfo']);
+Router::get('/system/list/{id:\d+}', [SystemController::class, 'listDetail']);
+Router::get('/system/form/{route_id:\d+}/form', [SystemController::class, 'formInfo']);
+Router::get('/system/form/{route_id:\d+}/{id:\d+}', [SystemController::class, 'formInfo']);
+Router::post('/system/form/{route_id:\d+}/{id:\d+}', [SystemController::class, 'formSave']);

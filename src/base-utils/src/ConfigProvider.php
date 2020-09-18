@@ -107,7 +107,6 @@ class ConfigProvider
             'exceptions' => [
                 'handler' => [
                     'http' => [
-                        HyperfHttpExceptionHandler::class,
                         HttpExceptionHandler::class,
                     ],
                 ],

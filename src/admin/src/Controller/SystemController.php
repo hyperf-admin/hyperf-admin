@@ -2,8 +2,11 @@
 namespace HyperfAdmin\Admin\Controller;
 
 use Hyperf\Utils\Str;
+use HyperfAdmin\Admin\Model\FrontRoutes;
 use HyperfAdmin\Admin\Service\CommonConfig;
 use HyperfAdmin\Admin\Service\ModuleProxy;
+use HyperfAdmin\BaseUtils\Constants\ErrorCode;
+use HyperfAdmin\BaseUtils\Guzzle;
 
 class SystemController extends AdminAbstractController
 {
@@ -39,5 +42,82 @@ class SystemController extends AdminAbstractController
             return Str::contains($item['value'], $kw);
         });
         return $this->success(array_values($routes));
+    }
+
+    public function listInfo(int $id)
+    {
+        $config = FrontRoutes::query()->find($id)->getAttributeValue("config");
+        $this->options = $config;
+        return $this->info();
+    }
+
+    public function listDetail(int $id)
+    {
+        $config = FrontRoutes::query()->find($id)->getAttributeValue("config");
+        $listApi = $config['listApi'] ?? '';
+        if (!$listApi) {
+            return $this->fail(ErrorCode::CODE_ERR_SYSTEM, '脚手架配置错误, 缺少列表接口');
+        }
+        try {
+            return Guzzle::proxy($listApi, $this->request);
+        } catch (\Exception $e) {
+            return $this->fail(ErrorCode::CODE_ERR_SYSTEM, '外部接口转发失败 ' . $e->getMessage());
+        }
+    }
+
+    public function formInfo($route_id, $id)
+    {
+        $config = FrontRoutes::query()->find($route_id)->getAttributeValue("config");
+        try {
+            $this->options = $config;
+            $form = $this->form();
+            if ($id) {
+                // todo token or aksk
+                $getApi = str_var_replace($config['getApi'] ?? '', ['id' => $id]);
+                $result = Guzzle::proxy($getApi, $this->request);
+                if ($result['code'] !== 0) {
+                    return $this->fail(ErrorCode::CODE_ERR_SYSTEM, '外部接口转发失败 ' . $result['message'] ?? '');
+                }
+                foreach ($form['payload']['form'] as &$item) {
+                    $item['value'] = $result['payload'][$item['field']] ?? null;
+                    unset($item);
+                }
+            }
+            return $form;
+        } catch (\Exception $e) {
+            return $this->fail(ErrorCode::CODE_ERR_SYSTEM, '外部接口转发失败 ' . $e->getMessage());
+        }
+    }
+
+    public function formSave($route_id, $id)
+    {
+        $config = FrontRoutes::query()->find($route_id)->getAttributeValue("config");
+        $saveApi = str_var_replace($config['saveApi'] ?? '', ['id' => $id]);
+        if (!$saveApi) {
+            return $this->fail(ErrorCode::CODE_ERR_SYSTEM, '脚手架配置错误, 缺少列表接口');
+        }
+        try {
+            return Guzzle::post($saveApi, $this->request);
+        } catch (\Exception $e) {
+            return $this->fail(ErrorCode::CODE_ERR_SYSTEM, '外部接口转发失败 ' . $e->getMessage());
+        }
+    }
+
+    public function delete()
+    {
+    }
+
+    public function proxy()
+    {
+        $proxyUrl = $this->request->query('proxy_url');
+
+        if (!$proxyUrl) {
+            return $this->fail(ErrorCode::CODE_ERR_SYSTEM, '脚手架配置错误, 缺少列表接口');
+        }
+        try {
+            return Guzzle::proxy($proxyUrl, $this->request);
+        } catch (\Exception $e) {
+            return $this->fail(ErrorCode::CODE_ERR_SYSTEM, '外部接口转发失败 ' . $e->getMessage());
+        }
     }
 }

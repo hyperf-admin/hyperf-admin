@@ -37,6 +37,7 @@ class FrontRoutes extends BaseModel
         'permission',
         'http_method',
         'page_type',
+        'config'
     ];
 
     protected $casts = [
@@ -48,6 +49,7 @@ class FrontRoutes extends BaseModel
         'is_scaffold' => 'integer',
         'page_type' => 'integer',
         'sort' => 'integer',
+        'config' => 'json',
     ];
 
     const HTTP_METHOD_ANY = 0;
