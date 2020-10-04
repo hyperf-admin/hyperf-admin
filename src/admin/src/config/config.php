@@ -4,6 +4,7 @@ return [
     'databases' => [
         'hyperf_admin' => db_complete([
             'host' => env('HYPERF_ADMIN_DB_HOST'),
+            'port' => env('HYPERF_ADMIN_DB_PORT', 3306),
             'database' => env('HYPERF_ADMIN_DB_NAME', 'hyperf_admin'),
             'username' => env('HYPERF_ADMIN_DB_USER'),
             'password' => env('HYPERF_ADMIN_DB_PWD'),
