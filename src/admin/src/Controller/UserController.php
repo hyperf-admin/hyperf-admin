@@ -62,7 +62,7 @@ class UserController extends AdminAbstractController
                     'info' => '普通管理员需要分配角色才能访问角色对应的资源；超级管理员可以访问全部资源',
                     'default' => NO,
                     'render' => function ($field, &$rule) {
-                        if ($this->auth_service->isSupperAdmin()) {
+                        if (!$this->auth_service->isSupperAdmin()) {
                             $rule['type'] = 'hidden';
                         }
                     },
