@@ -129,7 +129,8 @@ class ExportService
                 ])->save();
                 $query['_page'] += 1;
             }
-            $info = move_local_file_to_oss($file_path, '1/export_task/' . $file_name, true);
+            $bucket = config('storager.export_service', config('storager.default'));
+            $info = move_local_file_to_oss($file_path, '1/export_task/' . $file_name, true, $bucket);
             if($info) {
                 $task->fill([
                     'status' => ExportTasks::STATUS_SUCCESS,
