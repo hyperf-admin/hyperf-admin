@@ -14,9 +14,9 @@ class BaseModel extends Model
 {
     use InsertOnDuplicateKey;
 
-    const CREATED_AT = 'create_at';
+    const CREATED_AT = MODEL_CREATED_AT_FIELD;
 
-    const UPDATED_AT = 'update_at';
+    const UPDATED_AT = MODEL_UPDATED_AT_FIELD;
 
     const STATUS_YES = YES;
 

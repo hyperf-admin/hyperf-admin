@@ -56,6 +56,9 @@ class ConfigProvider
             ];
         }
 
+        define("MODEL_CREATED_AT_FIELD", env('MODEL_CREATED_AT_FIELD', 'created_at'));
+        define("MODEL_UPDATED_AT_FIELD", env('MODEL_UPDATED_AT_FIELD', 'updated_at'));
+
         return [
             'commands' => [],
             'dependencies' => [
