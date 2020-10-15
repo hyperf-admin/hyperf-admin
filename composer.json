@@ -23,7 +23,7 @@
         "hyperf/crontab": "~2.0.0",
         "hyperf/database": "~2.0.0",
         "hyperf/db-connection": "~2.0.0",
-        "hyperf/filesystem": "~2.0.0",
+        "hyperf/filesystem": "^2.0",
         "hyperf/framework": "~2.0.0",
         "hyperf/guzzle": "~2.0.0",
         "hyperf/http-server": "~2.0.0",
@@ -36,6 +36,7 @@
         "hyperf/snowflake": "~2.0.0",
         "hyperf/validation": "~2.0.0",
         "nette/php-generator": "^3.4",
+        "xxtime/flysystem-aliyun-oss": "^1.5",
         "yadakhov/insert-on-duplicate-key": "^1.2",
         "zoujingli/ip2region": "^1.0"
     },

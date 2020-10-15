@@ -14,6 +14,7 @@
   * [远程脚手架](backend/remote_scaffold.md)
   * [通用配置](backend/common-config.md)
   * [辅助函数](backend/functions.md)
+  * [文件上传](backend/file.md)
 * 业务组件
     * [业务组件介绍](backend/components/business/desc.md)
     * [DevTools-开发者工具](backend/components/business/dev-tools.md)

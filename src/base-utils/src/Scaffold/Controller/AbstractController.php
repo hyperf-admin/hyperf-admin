@@ -265,7 +265,7 @@ abstract class AbstractController extends Controller
                 if (is_callable($item['render'])) {
                     $each[$item['field']] = $item['render']($each[$item['field']] ?? null, $each);
                 } elseif (is_string($item['render']) && method_exists($this, $item['render'])) {
-                    $each[$item['field']] = $this->$item['render']($each[$item['field']] ?? null, $each);
+                    $each[$item['field']] = $this->{$item['render']}($each[$item['field']] ?? null, $each);
                 }
                 unset($each);
             }

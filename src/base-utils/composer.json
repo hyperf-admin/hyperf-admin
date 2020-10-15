@@ -60,6 +60,9 @@
             "src/Helper/common.php",
             "src/Helper/array.php",
             "src/Helper/system.php"
+        ],
+        "classmap": [
+            "src/classmap"
         ]
     },
     "autoload-dev": {

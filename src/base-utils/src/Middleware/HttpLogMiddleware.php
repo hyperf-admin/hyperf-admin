@@ -49,10 +49,14 @@ class HttpLogMiddleware implements MiddlewareInterface
             case Dispatcher::FOUND:
                 if(!in_array($path, $uriEx)) {
                     $response_content = mb_substr($response->getBody()->getContents(), 0, 125);
+                    $request_content = $request->getBody()->getContents();
+                    if (preg_match('/filename=.(.*)/', $request_content, $m)) {
+                        $request_content = urlencode($m[1]);
+                    }
                     $msg = [
                         'referer' => $referer,
                         'uri' => $request->getRequestTarget(),
-                        'request' => $request->getBody()->getContents(),
+                        'request' => $request_content,
                         'use_time' => 1000 * (microtime(true) - $start_time),
                         'response' => $response_content,
                     ];

@@ -18,26 +18,24 @@ abstract class ClassJobAbstract
         $this->job = $crontab;
         $this->jobManager = make(CronManager::class);
         $this->state = $this->jobManager->getJobState($crontab->getId());
-        $this->logger = logger();
+        $this->logger = logger()->get('cron_center');
     }
 
     public function run($params = [])
     {
-        $func = function () use ($params) {
-            try {
-                $this->beforeAction($params);
-                $this->handle($params);
-                $this->afterAction($params);
-            } catch (\Throwable $throwable) {
-                $this->onError($throwable);
-            } finally {
-                $this->onComplete();
+        try {
+            $this->beforeAction($params);
+            $result = $this->handle($params);
+            $this->afterAction($params);
+            return $result;
+        } catch (\Throwable $throwable) {
+            $this->onError($throwable);
+            return false;
+        } finally {
+            $this->onComplete();
 
-                return $this->evaluate();
-            }
-        };
-
-        return $func();
+            return $this->evaluate();
+        }
     }
 
     public function beforeAction($params = [])

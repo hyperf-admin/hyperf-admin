@@ -1,23 +1,23 @@
 <?php
 
 use Hyperf\ExceptionHandler\Formatter\FormatterInterface;
+use Hyperf\Filesystem\FilesystemFactory;
 use Hyperf\HttpServer\Router\DispatcherFactory;
 use Hyperf\HttpServer\Router\Router;
 use Hyperf\Server\ServerFactory;
 use Hyperf\Utils\Str;
-use OSS\Core\OssException;
-use HyperfAdmin\BaseUtils\AliyunOSS;
 use HyperfAdmin\BaseUtils\Guzzle;
 use HyperfAdmin\BaseUtils\Log;
+use League\Flysystem\AdapterInterface;
 
-if(!function_exists('server')) {
+if (!function_exists('server')) {
     function server()
     {
         return container(ServerFactory::class);
     }
 }
 
-if(!function_exists('swoole_server')) {
+if (!function_exists('swoole_server')) {
     /**
      * @return \Swoole\Server
      */
@@ -27,7 +27,7 @@ if(!function_exists('swoole_server')) {
     }
 }
 
-if(!function_exists('dispatcher')) {
+if (!function_exists('dispatcher')) {
     /**
      * @param $server_name
      *
@@ -39,7 +39,7 @@ if(!function_exists('dispatcher')) {
     }
 }
 
-if(!function_exists('register_route')) {
+if (!function_exists('register_route')) {
     function register_route($prefix, $controller, $callable = null)
     {
         Router::addGroup($prefix, function () use ($controller, $callable) {
@@ -68,48 +68,88 @@ if(!function_exists('register_route')) {
     }
 }
 
-if(!function_exists('move_local_file_to_oss')) {
-    function move_local_file_to_oss($local_file_path, $oss_file_path, $private = false, $bucket = 'aliyuncs')
+if (!function_exists('move_local_file_to_filesystem')) {
+    function move_local_file_to_filesystem($local_file_path, $save_file_path, $private = false, $bucket = 'aliyuncs', $update_when_exist = true)
     {
-        /** @var AliyunOSS $oss */
-        $oss = make(AliyunOSS::class, ['bucket' => $bucket]);
+        $filesystem = make(FilesystemFactory::class)->get($bucket);
         try {
-            $method = $private ? 'uploadPrivateFile' : 'uploadFile';
-            $oss->$method($oss_file_path, $local_file_path);
-            $file_path = config('storager.aliyuncs.cdn') . '/' . $oss_file_path;
-            if($private) {
-                $file_path = oss_private_url($oss_file_path, MINUTE * 5, $bucket);
+            $stream = fopen($local_file_path, 'r');
+            $has = $filesystem->has($save_file_path);
+            if (!$has) {
+                $filesystem->writeStream($save_file_path, $stream);
+            }
+            if ($has && $update_when_exist) {
+                $filesystem->updateStream($save_file_path, $stream);
             }
 
+            if ($private) {
+                $filesystem->setVisibility($save_file_path, AdapterInterface::VISIBILITY_PRIVATE);
+            }
+            $meta = $filesystem->getMetadata($save_file_path);
+            switch (config("file.storage.{$bucket}.driver")) {
+                case \Hyperf\Filesystem\Adapter\LocalAdapterFactory::class:
+                    $file_path = config("file.storage.{$bucket}.cdn") . $meta['path'];
+                    break;
+                case \Hyperf\Filesystem\Adapter\AliyunOssAdapterFactory::class;
+                    $file_path = $meta['info']['url'];
+                    break;
+                // TODO 更多 filesystem 渠道
+                default:
+                    $file_path = $save_file_path;
+            }
+            if ($private) {
+                $file_path = filesystem_private_url($save_file_path, MINUTE * 5, $bucket);
+            }
             return [
-                'file_path' => $file_path,
-                'path' => 'oss/' . $oss_file_path,
+                'file_path' => $file_path, // 直接可访问的完整链接
+                'path' => $save_file_path, // 资源的存储路径
             ];
-        } catch (OssException $exception) {
-            Log::get('move_local_file_to_oss')->error($exception->getMessage());
+        } catch (\Exception $exception) {
+            Log::get('move_local_file_to_filesystem')->error($exception->getMessage());
 
             return false;
         }
     }
 }
 
-if(!function_exists('oss_private_url')) {
-    function oss_private_url($oss_file_path, $timeout = 60, $bucket = 'aliyuncs')
+if (!function_exists('filesystem_private_url')) {
+    function filesystem_private_url($save_file_path, $timeout = 60, $bucket = 'aliyuncs')
     {
-        /** @var AliyunOSS $oss */
-        $oss = make(AliyunOSS::class, ['bucket' => $bucket]);
-        $key = preg_replace('@^oss/@', '', $oss_file_path);
+        if (!$save_file_path) {
+            return false;
+        }
+        $filesystem = make(FilesystemFactory::class)->get($bucket);
+        if (Str::startsWith($save_file_path, 'http')) {
+            $save_file_path = parse_url($save_file_path)['path'];
+            $parts = explode('/', $save_file_path);
+            unset($parts[0]);
+            $save_file_path = implode('/', $parts);
+        }
+        $save_file_path = preg_replace('@^oss/@', '', $save_file_path);
         try {
-            return str_replace('-internal', '', $oss->getSignUrl($key, $timeout));
-        } catch (OssException $exception) {
-            Log::get('oss_private_url')->error($exception->getMessage());
+            switch (config("file.storage.{$bucket}.driver")) {
+                case \Hyperf\Filesystem\Adapter\LocalAdapterFactory::class:
+                    return config("file.storage.{$bucket}.cdn") . $save_file_path;
+                    break;
+                case \Hyperf\Filesystem\Adapter\AliyunOssAdapterFactory::class;
+                    $adapter = $filesystem->getAdapter();
+                    if (method_exists($adapter, 'signUrl')) {
+                        return $adapter->signUrl($save_file_path, $timeout);
+                    }
+                    break;
+                // TODO 更多 filesystem 渠道
+                default:
+                    return $save_file_path;
+            }
+        } catch (\Exception $exception) {
+            Log::get('filesystem_private_url')->error($exception->getMessage());
 
             return false;
         }
     }
 }
 
-if(!function_exists('call_self_api')) {
+if (!function_exists('call_self_api')) {
     function call_self_api($api, $params = [], $method = 'GET')
     {
         $headers = [
@@ -121,12 +161,12 @@ if(!function_exists('call_self_api')) {
     }
 }
 
-if(!function_exists('select_options')) {
+if (!function_exists('select_options')) {
     function select_options($api, array $kws)
     {
         $ret = [];
         $chunk = array_chunk($kws, 100);
-        foreach($chunk as $part) {
+        foreach ($chunk as $part) {
             $ret = array_merge($ret, call_self_api($api, ['kw' => implode(',', $part)]));
         }
 
@@ -134,17 +174,17 @@ if(!function_exists('select_options')) {
     }
 }
 
-if(!function_exists('process_list_filter')) {
+if (!function_exists('process_list_filter')) {
     function process_list_filter($processes, $rule)
     {
-        if(!$rule) {
+        if (!$rule) {
             return $processes;
         }
-        if($ignore = $rule['ignore'] ?? false) {
-            if(is_string($ignore) && $ignore === 'all') {
+        if ($ignore = $rule['ignore'] ?? false) {
+            if (is_string($ignore) && $ignore === 'all') {
                 $processes = [];
             }
-            if(is_array($ignore)) {
+            if (is_array($ignore)) {
                 $processes = array_filter($processes, function ($item) use ($ignore) {
                     return !Str::startsWith($item, array_map(function ($each) {
                         return Str::replaceLast('*', '', $each);
@@ -152,7 +192,7 @@ if(!function_exists('process_list_filter')) {
                 });
             }
         }
-        if($active = $rule['active'] ?? []) {
+        if ($active = $rule['active'] ?? []) {
             $processes = array_merge($processes, $active);
         }
 
@@ -160,17 +200,13 @@ if(!function_exists('process_list_filter')) {
     }
 }
 
-if(!function_exists('get_sub_dir')) {
+if (!function_exists('get_sub_dir')) {
     function get_sub_dir($dir, $exclude = [])
     {
         $paths = [];
-        $dirs = \Symfony\Component\Finder\Finder::create()
-            ->in($dir)
-            ->depth('<1')
-            ->exclude((array)$exclude)
-            ->directories();
+        $dirs = \Symfony\Component\Finder\Finder::create()->in($dir)->depth('<1')->exclude((array)$exclude)->directories();
         /** @var SplFileInfo $dir */
-        foreach($dirs as $dir) {
+        foreach ($dirs as $dir) {
             $paths[] = $dir->getRealPath();
         }
 
@@ -178,7 +214,7 @@ if(!function_exists('get_sub_dir')) {
     }
 }
 
-if(!function_exists('db_complete')) {
+if (!function_exists('db_complete')) {
     function db_complete(array $conf)
     {
         return array_overlay($conf, [

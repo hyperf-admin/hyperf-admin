@@ -52,9 +52,9 @@
 
 #### register_route
 
-#### move_local_file_to_oss
+#### move_local_file_to_filesystem
 
-#### oss_private_url
+#### filesystem_private_url
 
 #### call_self_api
 
