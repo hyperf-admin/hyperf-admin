@@ -8,8 +8,8 @@ use HyperfAdmin\BaseUtils\Model\BaseModel;
  * @property int            $id
  * @property int            $user_id
  * @property int            $role_id
- * @property \Carbon\Carbon $create_at
- * @property \Carbon\Carbon $update_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class UserRole extends BaseModel
 {

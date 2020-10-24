@@ -23,8 +23,8 @@ class ModelMaker extends AbstractMaker
         }
         $columns = array_values(array_filter(array_map(function ($item) {
             if(in_array($item['COLUMN_NAME'], [
-                'create_at',
-                'update_at',
+                'created_at',
+                'updated_at',
                 'is_deleted',
             ])) {
                 return null;
@@ -47,7 +47,7 @@ class ModelMaker extends AbstractMaker
             $casts[$name] = $type;
             $params_doc .= sprintf('@property %s $%s %s', $type, $name, $comment) . PHP_EOL;
         }
-        unset($casts['id'], $casts['update_at'], $casts['create_at']);
+        unset($casts['id'], $casts['updated_at'], $casts['created_at']);
         $class->setComment($params_doc);
         $class->addProperty('connection', $pool)->setProtected();
         $class->addProperty('table', $table)->setProtected();

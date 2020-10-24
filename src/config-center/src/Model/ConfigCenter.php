@@ -11,8 +11,8 @@ use HyperfAdmin\BaseUtils\Model\BaseModel;
  * @property int            $create_uid 创建者id
  * @property int            $is_locked  是否被锁定
  * @property string         $owner_uids 所有者
- * @property \Carbon\Carbon $create_at
- * @property \Carbon\Carbon $update_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class ConfigCenter extends BaseModel
 {

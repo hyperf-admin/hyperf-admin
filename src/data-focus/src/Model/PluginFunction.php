@@ -11,8 +11,8 @@ use HyperfAdmin\BaseUtils\Model\BaseModel;
  * @property string         $context    方法体定义
  * @property int            $create_uid 创建者id
  * @property int            $status     状态
- * @property \Carbon\Carbon $create_at
- * @property \Carbon\Carbon $update_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class PluginFunction extends BaseModel
 {

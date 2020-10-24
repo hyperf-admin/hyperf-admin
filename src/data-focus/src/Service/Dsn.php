@@ -81,7 +81,7 @@ class Dsn
         $last_check_time = Redis::get($key) ?: date('Y-m-d H:i:s');
         $changed = DsnModel::query()
             ->select(['id'])
-            ->where('update_at', '>=', $last_check_time)
+            ->where('updated_at', '>=', $last_check_time)
             ->where('status', DsnModel::STATUS_YES)
             ->getAsArray();
         if(!$changed) {

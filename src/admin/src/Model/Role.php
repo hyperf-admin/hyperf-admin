@@ -10,8 +10,8 @@ use HyperfAdmin\BaseUtils\Model\BaseModel;
  * @property string         $name
  * @property int            $status
  * @property int            $sort
- * @property \Carbon\Carbon $create_at
- * @property \Carbon\Carbon $update_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class Role extends BaseModel
 {

@@ -164,8 +164,8 @@ class RoleController extends AdminAbstractController
             $role_menus[] = [
                 'role_id' => $pk_val,
                 'router_id' => (int)$menu_id,
-                'create_at' => date('Y-m-d H:i:s'),
-                'update_at' => date('Y-m-d H:i:s'),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ];
         }
         if (!empty($role_menus)) {
@@ -181,8 +181,8 @@ class RoleController extends AdminAbstractController
                 $user_role_ids[] = [
                     'role_id' => $pk_val,
                     'user_id' => (int)$user_id,
-                    'create_at' => date('Y-m-d H:i:s'),
-                    'update_at' => date('Y-m-d H:i:s'),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ];
             }
             if (!empty($user_role_ids)) {

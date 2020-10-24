@@ -72,7 +72,7 @@ abstract class AdminAbstractController extends AbstractController
         $user = User::query()->find($last->user_id);
         return $this->success([
             'has_new_version' => true,
-            'message' => sprintf("%s在%s保存了新的数据, 请刷新页面获取最新数据", $user->username, $last->create_at),
+            'message' => sprintf("%s在%s保存了新的数据, 请刷新页面获取最新数据", $user->username, $last->created_at),
         ]);
     }
 

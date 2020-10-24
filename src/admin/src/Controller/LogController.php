@@ -22,7 +22,7 @@ class LogController extends AdminAbstractController
                 'relation_ids',
                 'client_ip',
                 'detail_json',
-                'create_at',
+                'created_at',
             ],
             'formUI' => [
                 'form' => [
@@ -47,7 +47,7 @@ class LogController extends AdminAbstractController
                     ],
                 ],
                 'detail_json|其他内容' => 'string',
-                'create_at|记录时间' => [
+                'created_at|记录时间' => [
                     'type' => 'date_range',
                 ],
             ],
@@ -59,7 +59,7 @@ class LogController extends AdminAbstractController
                     ],
                     ['field' => 'id', 'title' => 'ID', 'hidden' => true],
                     [
-                        'field' => 'create_at',
+                        'field' => 'created_at',
                         'title' => '记录时间',
                         'width' => '150px',
                     ],
@@ -137,9 +137,9 @@ class LogController extends AdminAbstractController
                 $filters[$field] = ['like' => "%$filter%"];
             }
         }
-        if (!empty($filters['create_at']['between'])) {
-            $filters['create_at']['between'][0] = Carbon::parse($filters['create_at']['between'][0])->toDateTimeString();
-            $filters['create_at']['between'][1] = Carbon::parse($filters['create_at']['between'][1] . ' +1 day last second')
+        if (!empty($filters['created_at']['between'])) {
+            $filters['created_at']['between'][0] = Carbon::parse($filters['created_at']['between'][0])->toDateTimeString();
+            $filters['created_at']['between'][1] = Carbon::parse($filters['created_at']['between'][1] . ' +1 day last second')
                 ->toDateTimeString();
         }
         unset($filters);

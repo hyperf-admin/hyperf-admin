@@ -191,7 +191,7 @@ class ExportService
         return ExportTasks::where('filters', json_encode($filters))
             ->where('list_api', $url)
             ->where('operator_id', $operator_id)
-            ->where('create_at', '>=', Carbon::today()->toDateTimeString())
+            ->where('created_at', '>=', Carbon::today()->toDateTimeString())
             ->where('status', '!=', ExportTasks::STATUS_SUCCESS)
             ->first();
     }

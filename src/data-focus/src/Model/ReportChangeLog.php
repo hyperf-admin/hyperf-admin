@@ -10,7 +10,7 @@ use HyperfAdmin\BaseUtils\Model\BaseModel;
  * @property int            $dev_uid     开发者id
  * @property string         $dev_content 内容
  * @property int            $published   0未发布, 1已发布
- * @property \Carbon\Carbon $create_at
+ * @property \Carbon\Carbon $created_at
  */
 class ReportChangeLog extends BaseModel
 {

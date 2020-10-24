@@ -12,8 +12,8 @@ use HyperfAdmin\BaseUtils\Model\BaseModel;
  * @property array          $config     配置
  * @property int            $status     状态
  * @property int            $create_uid 创建者id
- * @property \Carbon\Carbon $create_at
- * @property \Carbon\Carbon $update_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class Dsn extends BaseModel
 {

@@ -6,8 +6,8 @@ use HyperfAdmin\BaseUtils\Model\BaseModel;
 
 class Version extends BaseModel
 {
-    const CREATED_AT = 'create_at';
-    const UPDATED_AT = 'update_at';
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
 
     protected $connection = 'hyperf_admin';
 

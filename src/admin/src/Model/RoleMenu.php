@@ -7,8 +7,8 @@ use HyperfAdmin\BaseUtils\Model\BaseModel;
 /**
  * @property int            $role_id
  * @property int            $router_id
- * @property \Carbon\Carbon $create_at
- * @property \Carbon\Carbon $update_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class RoleMenu extends BaseModel
 {

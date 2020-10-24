@@ -22,7 +22,7 @@ class UserController extends AdminAbstractController
             'createAble' => true,
             'deleteAble' => true,
             'defaultList' => true,
-            'filter' => ['realname%', 'username%', 'create_at'],
+            'filter' => ['realname%', 'username%', 'created_at'],
             'form' => [
                 'id' => 'int',
                 'username|登录账号' => [
@@ -85,7 +85,7 @@ class UserController extends AdminAbstractController
                         $data['props']['options'] = $this->permission_service->getRoleTree();
                     },
                 ],
-                'create_at|创建时间' => [
+                'created_at|创建时间' => [
                     'form' => false,
                     'type' => 'date_range',
                 ],
@@ -284,7 +284,7 @@ class UserController extends AdminAbstractController
             'total_pages',
             'current_page',
             'download_url',
-            'create_at',
+            'created_at',
         ]);
 
         return $this->success([

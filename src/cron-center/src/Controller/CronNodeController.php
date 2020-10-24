@@ -36,7 +36,7 @@ class CronNodeController extends AbstractController
                         YES => 'success',
                     ],
                 ],
-                'update_at|最后活跃时间' => '',
+                'updated_at|最后活跃时间' => '',
             ],
             'table' => [
                 'columns' => [
@@ -51,7 +51,7 @@ class CronNodeController extends AbstractController
                             CronNodes::STATUS_LOSS => 'danger',
                         ],
                         'render' => function ($status, $row) {
-                            if ((time() - strtotime($row['update_at'])) > 60) {
+                            if ((time() - strtotime($row['updated_at'])) > 60) {
                                 return CronNodes::STATUS_LOSS;
                             }
 
@@ -59,7 +59,7 @@ class CronNodeController extends AbstractController
                         },
                         'info' => '下线表示节点已经丢失, 不可用, 锁定表示节点存活, 但人为锁定, 将不执行任何任务',
                     ],
-                    'update_at',
+                    'updated_at',
                 ],
                 'rowActions' => [
                     [

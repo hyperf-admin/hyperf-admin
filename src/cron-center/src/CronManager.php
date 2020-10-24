@@ -173,7 +173,7 @@ class CronManager
         if ($has) {
             $data = [
                 'status' => $has['status'] === 2 ? 2 : 1,
-                'update_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ];
             $nodes->where(['name' => $node_name])->update($data);
         } else {

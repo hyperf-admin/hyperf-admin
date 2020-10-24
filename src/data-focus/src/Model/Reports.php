@@ -17,8 +17,8 @@ use HyperfAdmin\BaseUtils\Model\BaseModel;
  * @property string         $crontab         定时任务
  * @property string         $config          配置
  * @property \Carbon\Carbon $publish_at      最后一次发布时间
- * @property \Carbon\Carbon $create_at       创建时间
- * @property \Carbon\Carbon $update_at       最后更新时间
+ * @property \Carbon\Carbon $created_at       创建时间
+ * @property \Carbon\Carbon $updated_at       最后更新时间
  */
 class Reports extends BaseModel
 {

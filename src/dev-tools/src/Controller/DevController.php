@@ -294,7 +294,7 @@ class DevController extends AbstractController
         $tool = make(TableSchema::class);
         $schema = $tool->tableSchema($pool, $db, $table);
         $ret = [];
-        $ignores = ['id', 'create_at', 'update_at', 'is_deleted'];
+        $ignores = ['id', 'created_at', 'updated_at', 'is_deleted'];
         foreach ($schema as $item) {
             if (in_array($item['COLUMN_NAME'], $ignores)) {
                 continue;

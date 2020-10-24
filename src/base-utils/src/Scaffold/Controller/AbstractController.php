@@ -1299,7 +1299,7 @@ abstract class AbstractController extends Controller
         }
         return $this->success([
             'has_new_version' => true,
-            'message' => sprintf("%s有新的数据产生, 请刷新页面获取最新数据", $last->create_at),
+            'message' => sprintf("%s有新的数据产生, 请刷新页面获取最新数据", $last->created_at),
         ]);
     }
 }

@@ -21,8 +21,8 @@ use HyperfAdmin\BaseUtils\Model\BaseModel;
  * @property string         $sign
  * @property string         $avatar
  * @property string         $avatar_small
- * @property \Carbon\Carbon $create_at
- * @property \Carbon\Carbon $update_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class User extends BaseModel
 {
