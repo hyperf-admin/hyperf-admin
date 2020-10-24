@@ -1,6 +1,6 @@
-?> 如果仅是体验该项目, 强烈推荐 [demo](https://hyperf-admin.github.io/hyperf-admin/#/guide/demo) 部分文档, 一键启动
+?> 如果仅是体验该项目, 请访问演示站点[hyperf-admin](http://hyperf-admin.daodao.run/) 
 
-## 前端
+## 前端的安装
 
 ```shell
 # 环境依赖
@@ -20,38 +20,38 @@ npm run build:prod
 npm run build:test
 ```
 
-## 后端
+## 后端的安装
 
+#### 1. 初始化一个`hypef`项目
 ```shell
 # 环境依赖 php ^7.2 composer swoole 
 composer create-project hyperf/hyperf-skeleton hyperf-admin
 cd hyperf-admin
-# 移除日志配置, admin 底层已配置
-rm config/autoload/logger.php
-# 设置基础环境配置 .env 具体见下方
-# hyperf-admin 为分包的模式, 此处引入的是完整仓库, 实际项目请按需引入
-# 若全部引入需要安全全部的db依赖 详见 https://github.com/hyperf-admin/hyperf-admin-demo/tree/master/docker/db
-composer require hyperf-admin/hyperf-admin
-composer i
-# validation 依赖
-php bin/hyperf.php vendor:publish hyperf/translation
-php bin/hyperf.php vendor:publish hyperf/validation
+``` 
 
-# 这只项目秘钥, 见下面 password.salt
-# 启动 热重启参考 https://github.com/daodao97/hyperf-watch
-composer watch
+#### 2. 移除`hyperf-skeleton`中的日志配置, 因为 `admin` 底层已配置
+```shell
+rm config/autoload/logger.php
 ```
 
-`.env`
-```bash
+#### 3. 安装`hyperf-admin`的依赖DB信息
+
+!> hyperf-admin 为分包的模式, 此处引入的是完整仓库, 实际项目请按需引入
+
+全部的`mysql` 表结构及及基础数据详见 [demo/db](https://github.com/hyperf-admin/hyperf-admin-demo/tree/master/docker/db)
+
+#### 4. 修改项目`.env`
+```shell
 APP_NAME=hyperf-admin
 ENV=dev
 
+# Redis链接信息
 REDIS_HOST=localhost
 REDIS_AUTH=(null)
 REDIS_PORT=6379
 REDIS_DB=0
 
+# hyperf-admin 依赖的核心db
 HYPERF_ADMIN_DB_HOST=localhost
 HYPERF_ADMIN_DB_PORT=3306
 HYPERF_ADMIN_DB_NAME=hyperf_admin
@@ -61,14 +61,30 @@ HYPERF_ADMIN_DB_PWD=root
 LOCAL_DB_HOST=localhost
 ```
 
-`password.salt`
-```php
+#### 5. 安装`hyperf-admin`扩展包
+```shell 
+composer require hyperf-admin/hyperf-admin
+```
+!> hyperf-admin 为分包模式, 实际应用中请根据情况安装
+
+#### 6. 初始化`validation`的依赖文档
+```shell
+php bin/hyperf.php vendor:publish hyperf/translation
+php bin/hyperf.php vendor:publish hyperf/validation
+```
+
+#### 7. 设置用户密码的加密`key`, 配置节点`password.salt`
+```shell
 // config/config.php
 
 'password' => [
     'salt' => env('HYPERF_ADMIN_PWD_SALT', 'c093d70f088499c3a837cae00c042f14'), // 用 md5(time()) 获取 salt
- ],
+```
 
+#### 8. 启动
+```shell
+# 启动 热重启参考 https://github.com/daodao97/hyperf-watch
+composer watch
 ```
 
 ## nginx配置
@@ -111,4 +127,4 @@ server {
 
 浏览器打开 [http://youdomain.com:8081/default/#/dashboard](http://youdomain.com:8081/default/#/dashboard) 即可访问
 
-默认账号 ` daodao`, 密码 `a1a1a1`
+默认账号 `daodao`, 密码 `a1a1a1`
