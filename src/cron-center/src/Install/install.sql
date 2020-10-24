@@ -8,8 +8,8 @@ CREATE TABLE `dsn` (
     `config`     TINYTEXT            NOT NULL COMMENT '配置',
     `create_uid` INT(12) UNSIGNED    NOT NULL DEFAULT '0' COMMENT '创建者id',
     `status`     TINYINT(4) UNSIGNED NOT NULL DEFAULT '0' COMMENT '0启用, 1禁用',
-    `create_at`  DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `update_at`  DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `created_at`  DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`  DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
@@ -23,8 +23,8 @@ CREATE TABLE `plugin_function` (
     `context`    TEXT COMMENT '方法体定义',
     `create_uid` INT(120) UNSIGNED   NOT NULL DEFAULT '0' COMMENT '创建者id',
     `status`     TINYINT(4) UNSIGNED NOT NULL DEFAULT '0' COMMENT '状态',
-    `create_at`  DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `update_at`  DATETIME                     DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `created_at`  DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`  DATETIME                     DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
     UNIQUE KEY `func_name` (`func_name`)
 )
@@ -37,8 +37,8 @@ CREATE TABLE `report_change_log` (
     `dev_uid`     INT(12) UNSIGNED    NOT NULL COMMENT '开发者id',
     `dev_content` TEXT COMMENT '内容',
     `published`   TINYINT(4) UNSIGNED NOT NULL DEFAULT '0' COMMENT '0未发布, 1已发布',
-    `create_at`   DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `update_at`   DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `created_at`   DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`   DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
     KEY `report_id` (`report_id`)
 )
@@ -58,8 +58,8 @@ CREATE TABLE `reports` (
     `crontab`         VARCHAR(255)     NOT NULL DEFAULT '' COMMENT '定时任务',
     `config`          TEXT COMMENT '配置',
     `publish_at`      DATETIME                  DEFAULT NULL COMMENT '最后一次发布时间',
-    `create_at`       DATETIME         NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `update_at`       DATETIME         NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
+    `created_at`       DATETIME         NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `updated_at`       DATETIME         NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
