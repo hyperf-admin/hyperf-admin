@@ -23,8 +23,6 @@
     -   `composer require hyperf-admin/cron-center` 定时任务管理, 后台化管理任务
     -   `composer require hyperf-admin/data-focus` 数据面板模块, 帮你快速制作数据大盘
 
-?> 如果仅是体验该项目, 请访问演示站点[hyperf-admin](http://hyperf-admin.daodao.run/) 
-
 ## 前端的安装
 
 ```shell
