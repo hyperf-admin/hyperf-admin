@@ -37,7 +37,7 @@ npm i
 npm run dev
 ```
 
-!> 请根据实际情况修改`vue.config.js`中的代理 `proxy.target`地址
+请根据实际情况修改`vue.config.js`中的代理 `proxy.target`地址
 
 ```shell
 # 打包
@@ -61,7 +61,7 @@ rm config/autoload/logger.php
 
 #### 3. 安装`hyperf-admin`的依赖DB信息
 
-!> hyperf-admin 为分包的模式, 此处引入的是完整仓库, 实际项目请按需引入
+hyperf-admin 为分包的模式, 此处引入的是完整仓库, 实际项目请按需引入
 
 全部的`mysql` 表结构及及基础数据详见 [demo/db](https://github.com/hyperf-admin/hyperf-admin-demo/tree/master/docker/db)
 
@@ -90,7 +90,7 @@ LOCAL_DB_HOST=localhost
 ```shell 
 composer require hyperf-admin/hyperf-admin
 ```
-!> hyperf-admin 为分包模式, 实际应用中请根据情况安装
+hyperf-admin 为分包模式, 实际应用中请根据情况安装
 
 #### 6. 初始化`validation`的依赖文档
 ```shell
