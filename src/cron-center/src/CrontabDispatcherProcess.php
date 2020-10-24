@@ -1,6 +1,7 @@
 <?php
 namespace HyperfAdmin\CronCenter;
 
+use Hyperf\Contract\ConfigInterface;
 use Hyperf\Crontab\Crontab;
 use Hyperf\Crontab\Event\CrontabDispatcherStarted;
 use Hyperf\Crontab\Parser;
@@ -27,6 +28,10 @@ class CrontabDispatcherProcess extends ProcessCrontabDispatcherProcess
      */
     public $cron_manager;
 
+    public $name = 'cron-center-dispatcher';
+
+    public $config;
+
     public function __construct(ContainerInterface $container)
     {
         parent::__construct($container);
@@ -35,13 +40,16 @@ class CrontabDispatcherProcess extends ProcessCrontabDispatcherProcess
         $this->strategy = $container->get(StrategyInterface::class);
         $this->parser = make(Parser::class);
         $this->cron_manager = make(CronManager::class);
+        $this->config = $container->get(ConfigInterface::class);
+    }
+
+    public function isEnable($server): bool
+    {
+        return $this->config->get('cron_center.enable', false);
     }
 
     public function handle(): void
     {
-        if (!config('cron_center.enable', false)) {
-            return;
-        }
         $this->event->dispatch(new CrontabDispatcherStarted());
         while (true) {
             $this->cron_manager->createOrUpdateNode();
