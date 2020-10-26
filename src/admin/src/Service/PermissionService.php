@@ -15,6 +15,10 @@ use HyperfAdmin\BaseUtils\Redis\Redis;
 
 class PermissionService
 {
+    public $scaffold_actions = [
+        'newVersion', 'rowChange', 'getTreeNodeChilds', 'export', 'import', 'save', 'delete', 'info'
+    ];
+
     /**
      * 解析系统路由
      *
