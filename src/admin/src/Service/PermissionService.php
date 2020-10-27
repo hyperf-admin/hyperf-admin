@@ -12,6 +12,7 @@ use HyperfAdmin\Admin\Model\Role;
 use HyperfAdmin\Admin\Model\RoleMenu;
 use HyperfAdmin\Admin\Model\UserRole;
 use HyperfAdmin\BaseUtils\Redis\Redis;
+use HyperfAdmin\Admin\Service\CommonConfig as CommonConfigService;
 
 class PermissionService
 {
@@ -86,21 +87,22 @@ class PermissionService
     public function getPermissionOptions($role_id = 0)
     {
         // todo 配置化
-        $options = [
-            [
-                'value' => 'default',
-                'label' => '默认',
-                'children' => make(Menu::class)->tree(['module' => 'default']),
-            ],
-            [
-                'value' => 'system',
-                'label' => '系统',
-                'children' => make(Menu::class)->tree(['module' => 'system']),
-            ],
-        ];
+        $modules = make(CommonConfigService::class)->getValue('system', 'website_config')['system_module'];
+
+        $options = [];
+        $values = [];
+
         $router_ids = $this->getRoleMenuIds([$role_id]);
-        $values = $this->getRolePermissionValues($router_ids, 'default');
-        $values = array_merge($values, $this->getRolePermissionValues($router_ids, 'system'));
+
+        foreach ($modules as $item) {
+            $options[] = [
+                'value' => $item['name'],
+                'label' => $item['label'],
+                'children' => make(Menu::class)->tree(['module' => $item['name']]),
+            ];
+
+            $values[] = $this->getRolePermissionValues($router_ids, $item['name']);
+        }
 
         return [$values, $options];
     }
@@ -293,7 +295,7 @@ class PermissionService
         $resources = $auth_type == FrontRoutes::RESOURCE_OPEN ? $this->getOpenResourceList() : $this->getUserResource($user_id);
         $route_keys = [];
         foreach($resources as $resource) {
-            if(!$resource['uri']) {
+            if(!isset($resource['uri']) || !$resource['uri']) {
                 continue;
             }
             $route_key = "{$resource['http_method']}::{$resource['uri']}";
