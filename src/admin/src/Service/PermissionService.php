@@ -101,7 +101,7 @@ class PermissionService
                 'children' => make(Menu::class)->tree(['module' => $item['name']]),
             ];
 
-            $values[] = $this->getRolePermissionValues($router_ids, $item['name']);
+            $values = array_merge($values, $this->getRolePermissionValues($router_ids, $item['name']));
         }
 
         return [$values, $options];
