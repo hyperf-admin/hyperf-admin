@@ -388,4 +388,18 @@ class PermissionService
         }
         throw new \RuntimeException('Handler not exist.');
     }
+    
+    public function getModules($router_ids)
+    {
+        if(!$router_ids) {
+            return [];
+        }
+
+        return FrontRoutes::query()
+            ->select(['module'])
+            ->whereIn('id', $router_ids)
+            ->get()
+            ->pluck('module')
+            ->toArray();
+    }
 }
