@@ -4,6 +4,7 @@ namespace HyperfAdmin\Admin\Controller;
 use Hyperf\Utils\Str;
 use HyperfAdmin\Admin\Model\FrontRoutes;
 use HyperfAdmin\Admin\Service\CommonConfig;
+use HyperfAdmin\Admin\Service\Menu;
 use HyperfAdmin\Admin\Service\ModuleProxy;
 use HyperfAdmin\BaseUtils\Constants\ErrorCode;
 use HyperfAdmin\BaseUtils\Guzzle;
@@ -25,6 +26,21 @@ class SystemController extends AdminAbstractController
             'open_export' => false,
             'navbar_notice' => '',
         ]);
+        
+        if (isset($config['system_module']) && !$this->auth_service->isSupperAdmin()) {
+            $user_id = $this->auth_service->get('id');
+
+            $role_ids = $this->permission_service->getUserRoleIds($user_id);
+
+            $router_ids = $this->permission_service->getRoleMenuIds($role_ids);
+
+            $modules = array_unique($this->permission_service->getModules($router_ids));
+
+            foreach ($config['system_module'] as $module_key => $module_value) {
+                if(!in_array($module_value['name'], $modules))
+                    unset($config['system_module'][$module_key]);
+            }
+        }
 
         return $this->success($config);
     }
