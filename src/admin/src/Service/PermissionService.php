@@ -11,13 +11,20 @@ use HyperfAdmin\Admin\Model\FrontRoutes;
 use HyperfAdmin\Admin\Model\Role;
 use HyperfAdmin\Admin\Model\RoleMenu;
 use HyperfAdmin\Admin\Model\UserRole;
-use HyperfAdmin\BaseUtils\Redis\Redis;
 use HyperfAdmin\Admin\Service\CommonConfig as CommonConfigService;
+use HyperfAdmin\BaseUtils\Redis\Redis;
 
 class PermissionService
 {
     public $scaffold_actions = [
-        'newVersion', 'rowChange', 'getTreeNodeChilds', 'export', 'import', 'save', 'delete', 'info'
+        'newVersion',
+        'rowChange',
+        'getTreeNodeChilds',
+        'export',
+        'import',
+        'save',
+        'delete',
+        'info',
     ];
 
     /**
@@ -30,20 +37,20 @@ class PermissionService
         $router = container(DispatcherFactory::class)->getRouter('http');
         $data = $router->getData();
         $options = [];
-        foreach($data as $routes_data) {
-            foreach($routes_data as $http_method => $routes) {
+        foreach ($data as $routes_data) {
+            foreach ($routes_data as $http_method => $routes) {
                 $route_list = [];
-                if(isset($routes[0]['routeMap'])) {
-                    foreach($routes as $map) {
+                if (isset($routes[0]['routeMap'])) {
+                    foreach ($routes as $map) {
                         array_push($route_list, ...$map['routeMap']);
                     }
                 } else {
                     $route_list = $routes;
                 }
-                foreach($route_list as $route => $v) {
+                foreach ($route_list as $route => $v) {
                     // 过滤掉脚手架页面配置方法
                     $callback = is_array($v) ? ($v[0]->callback) : $v->callback;
-                    if(!is_array($callback)) {
+                    if (!is_array($callback)) {
                         continue;
                     }
                     $route = is_string($route) ? rtrim($route) : rtrim($v[0]->route);
@@ -61,7 +68,7 @@ class PermissionService
 
     public function getRolePermissionValues($router_ids, $module = 'system')
     {
-        if(empty($router_ids)) {
+        if (empty($router_ids)) {
             return [];
         }
         $data = [];
@@ -69,9 +76,9 @@ class PermissionService
             'module' => $module,
             'id' => $router_ids,
         ]);
-        if(!empty($routers)) {
+        if (!empty($routers)) {
             $paths = array_keys(tree_2_paths($routers, $module));
-            foreach($paths as $path) {
+            foreach ($paths as $path) {
                 $data[] = explode('-', $path);
             }
         }
@@ -110,25 +117,17 @@ class PermissionService
     public function getAllRoleList($where = [], $fields = ['*'])
     {
         $model = new Role();
-        $roles = $model->where2query($where)
-            ->select($fields)
-            ->orderByRaw('pid asc, sort desc')
-            ->get();
+        $roles = $model->where2query($where)->select($fields)->orderByRaw('pid asc, sort desc')->get();
 
         return $roles->toArray();
     }
 
     public function getRoleMenuIds($role_ids)
     {
-        if(empty($role_ids)) {
+        if (empty($role_ids)) {
             return [];
         }
-        $routes = RoleMenu::query()
-            ->distinct(true)
-            ->select(['router_id'])
-            ->whereIn('role_id', $role_ids)
-            ->get()
-            ->toArray();
+        $routes = RoleMenu::query()->distinct(true)->select(['router_id'])->whereIn('role_id', $role_ids)->get()->toArray();
 
         return $routes ? array_column($routes, 'router_id') : [];
     }
@@ -148,49 +147,34 @@ class PermissionService
 
     public function getUserRoleIds($user_id)
     {
-        if(!$user_id) {
+        if (!$user_id) {
             return [];
         }
 
-        return UserRole::query()
-            ->select(['role_id'])
-            ->where('user_id', $user_id)
-            ->get()
-            ->pluck('role_id')
-            ->toArray();
+        return UserRole::query()->select(['role_id'])->where('user_id', $user_id)->get()->pluck('role_id')->toArray();
     }
 
     public function getRoleUserIds($role_id)
     {
-        if(!$role_id) {
+        if (!$role_id) {
             return [];
         }
 
-        return UserRole::query()
-            ->select(['user_id'])
-            ->where('role_id', $role_id)
-            ->get()
-            ->pluck('user_id')
-            ->toArray();
+        return UserRole::query()->select(['user_id'])->where('role_id', $role_id)->get()->pluck('user_id')->toArray();
     }
 
     public function getMenuRoleIds($menu_id)
     {
-        if(!$menu_id) {
+        if (!$menu_id) {
             return [];
         }
 
-        return RoleMenu::query()
-            ->select(['role_id'])
-            ->where('router_id', $menu_id)
-            ->get()
-            ->pluck('role_id')
-            ->toArray();
+        return RoleMenu::query()->select(['role_id'])->where('router_id', $menu_id)->get()->pluck('role_id')->toArray();
     }
 
     public function getUserResource($user_id)
     {
-        if(!$user_id) {
+        if (!$user_id) {
             return [];
         }
         $user_role_ids = $this->getUserRoleIds($user_id);
@@ -207,10 +191,10 @@ class PermissionService
             'scaffold_action',
         ])->get()->toArray();
         $resources = [];
-        foreach($list as $route) {
-            if(Str::contains($route['permission'], '::')) {
+        foreach ($list as $route) {
+            if (Str::contains($route['permission'], '::')) {
                 $permissions = array_filter(explode(',', $route['permission']));
-                foreach($permissions as $permission) {
+                foreach ($permissions as $permission) {
                     [
                         $http_method,
                         $uri,
@@ -225,10 +209,10 @@ class PermissionService
                 $paths = array_filter(explode('/', $route['path']));
                 $suffix = array_pop($paths);
                 $prefix = implode('/', $paths);
-                if($suffix == 'list') {
+                if ($suffix == 'list') {
                     $action_conf = config("scaffold_permissions.list.permission");
                     $scaffold_permissions = array_filter(explode(',', str_replace('/*/', "/{$prefix}/", $action_conf)));
-                    foreach($scaffold_permissions as $scaffold_permission) {
+                    foreach ($scaffold_permissions as $scaffold_permission) {
                         [
                             $http_method,
                             $uri,
@@ -239,7 +223,7 @@ class PermissionService
                         ];
                     }
                 }
-                if(empty($route['permission'])) {
+                if (empty($route['permission'])) {
                     continue;
                 }
                 $resources[] = [
@@ -260,7 +244,7 @@ class PermissionService
                 'name' => 'permissions',
             ])->value('value')[$field] ?? [];
         $data = [];
-        foreach($open_apis as $route) {
+        foreach ($open_apis as $route) {
             [$http_method, $uri] = explode("::", $route, 2);
             $data[] = compact('http_method', 'uri');
         }
@@ -277,12 +261,12 @@ class PermissionService
             'dispatcher' => 'FastRoute\\Dispatcher\\GroupCountBased',
             'routeCollector' => 'FastRoute\\RouteCollector',
         ];
-        if(!$dispatch_data = json_decode(Redis::get($cache_key), true)) {
+        if (!$dispatch_data = json_decode(Redis::get($cache_key), true)) {
             /** @var RouteCollector $routeCollector */
             $route_collector = new $options['routeCollector'](new $options['routeParser'], new $options['dataGenerator']);
             $this->processUserResource($route_collector, $user_id, $auth_type);
             $dispatch_data = $route_collector->getData();
-            if(!empty($dispatch_data)) {
+            if (!empty($dispatch_data)) {
                 Redis::setex($cache_key, DAY, json_encode($dispatch_data));
             }
         }
@@ -294,12 +278,12 @@ class PermissionService
     {
         $resources = $auth_type == FrontRoutes::RESOURCE_OPEN ? $this->getOpenResourceList() : $this->getUserResource($user_id);
         $route_keys = [];
-        foreach($resources as $resource) {
-            if(!isset($resource['uri']) || !$resource['uri']) {
+        foreach ($resources as $resource) {
+            if (!isset($resource['uri']) || !$resource['uri']) {
                 continue;
             }
             $route_key = "{$resource['http_method']}::{$resource['uri']}";
-            if(in_array($route_key, $route_keys)) {
+            if (in_array($route_key, $route_keys)) {
                 continue;
             }
             $route_keys[] = $route_key;
@@ -311,7 +295,7 @@ class PermissionService
     {
         $auth_service = make(AuthService::class);
         // 用户为超级管理员
-        if($auth_service->isSupperAdmin()) {
+        if ($auth_service->isSupperAdmin()) {
             return true;
         }
         $user = $auth_service->user();
@@ -323,10 +307,8 @@ class PermissionService
 
     public function isOpen($uri, $method)
     {
-        $routes = container(DispatcherFactory::class)
-            ->getDispatcher('http')
-            ->dispatch($method, $uri);
-        if($routes[0] !== Dispatcher::FOUND) {
+        $routes = container(DispatcherFactory::class)->getDispatcher('http')->dispatch($method, $uri);
+        if ($routes[0] !== Dispatcher::FOUND) {
             return false;
         }
         if ($routes[1] instanceof Handler) {
@@ -351,10 +333,10 @@ class PermissionService
 
     public function can($uri, $method)
     {
-        if($this->isOpen($uri, $method)) {
+        if ($this->isOpen($uri, $method)) {
             return true;
         }
-        if($this->hasPermission($uri, $method)) {
+        if ($this->hasPermission($uri, $method)) {
             return true;
         }
 
@@ -366,7 +348,7 @@ class PermissionService
         $cache_key = 'hyperf_admin_permission_cache:key_map';
         $new_key = "hyperf_admin_permission_cache:" . md5(time() . Str::random(6));
         $cache_value = !$force ? json_decode(Redis::get($cache_key), true) : [];
-        if(!isset($cache_value[$user_id])) {
+        if (!isset($cache_value[$user_id])) {
             $cache_value[$user_id] = $new_key;
             Redis::set($cache_key, json_encode($cache_value));
         }
@@ -376,30 +358,35 @@ class PermissionService
 
     protected function prepareHandler($handler): array
     {
-        if(is_string($handler)) {
-            if(strpos($handler, '@') !== false) {
+        if (is_string($handler)) {
+            if (strpos($handler, '@') !== false) {
                 return explode('@', $handler);
             }
 
             return explode('::', $handler);
         }
-        if(is_array($handler) && isset($handler[0], $handler[1])) {
+        if (is_array($handler) && isset($handler[0], $handler[1])) {
             return $handler;
         }
         throw new \RuntimeException('Handler not exist.');
     }
-    
-    public function getModules($router_ids)
+
+    public function getModules($user_id)
     {
-        if(!$router_ids) {
+        $role_ids = $this->getUserRoleIds($user_id);
+        if (!$role_ids) {
+            return [];
+        }
+        $route_ids = $this->getRoleMenuIds($role_ids);
+        if (!$route_ids) {
             return [];
         }
 
-        return FrontRoutes::query()
+        return array_unique(FrontRoutes::query()
             ->select(['module'])
-            ->whereIn('id', $router_ids)
+            ->whereIn('id', $route_ids)
             ->get()
             ->pluck('module')
-            ->toArray();
+            ->toArray());
     }
 }
