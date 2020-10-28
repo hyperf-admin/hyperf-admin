@@ -34,13 +34,11 @@ class SystemController extends AdminAbstractController
 
             $router_ids = $this->permission_service->getRoleMenuIds($role_ids);
 
-            foreach ($config['system_module'] as $module_key => $module_value) {
-                $routers = make(Menu::class)->tree([
-                    'module' => $module_value['name'],
-                    'id' => $router_ids,
-                ]);
+            $modules = array_unique($this->permission_service->getModules($router_ids));
 
-                if(empty($routers)) unset($config['system_module'][$module_key]);
+            foreach ($config['system_module'] as $module_key => $module_value) {
+                if(!in_array($module_value['name'], $modules))
+                    unset($config['system_module'][$module_key]);
             }
         }
 
