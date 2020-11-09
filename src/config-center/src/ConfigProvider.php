@@ -15,6 +15,7 @@ class ConfigProvider
                     'username' => env('CONFIG_CENTER_DB_USER', env('HYPERF_ADMIN_DB_USER')),
                     'password' => env('CONFIG_CENTER_DB_PWD', env('HYPERF_ADMIN_DB_PWD')),
                     'prefix' => env('CONFIG_CENTER_DB_PREFIX', env('HYPERF_ADMIN_DB_PREFIX')),
+                    'port' => env('CONFIG_CENTER_DB_PORT', env('HYPERF_ADMIN_DB_PORT')),
                 ]),
             ],
             'commands' => [

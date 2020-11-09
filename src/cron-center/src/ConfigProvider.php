@@ -20,7 +20,7 @@ class ConfigProvider
                     'username' => env('CRON_CENTER_DB_USER', env('HYPERF_ADMIN_DB_USER')),
                     'password' => env('CRON_CENTER_DB_PWD', env('HYPERF_ADMIN_DB_PWD')),
                     'prefix' => env('CRON_CENTER_DB_PREFIX', env('HYPERF_ADMIN_DB_PREFIX')),
-
+                    'port' => env('CRON_CENTER_DB_PORT', env('HYPERF_ADMIN_DB_PORT')),
                 ]),
             ],
             'commands' => [
