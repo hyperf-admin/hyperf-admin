@@ -17,7 +17,7 @@ class ConfigProvider
                     'username' => env('DATA_FOCUS_DB_USER', env('HYPERF_ADMIN_DB_USER')),
                     'password' => env('DATA_FOCUS_DB_PWD', env('HYPERF_ADMIN_DB_PWD')),
                     'prefix' => env('DATA_FOCUS_DB_PREFIX', env('HYPERF_ADMIN_DB_PREFIX')),
-
+                    'port' => env('DATA_FOCUS_DB_PORT', env('HYPERF_ADMIN_DB_PORT')),
                 ]),
             ],
             'commands' => [

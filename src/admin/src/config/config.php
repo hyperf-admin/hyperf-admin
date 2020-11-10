@@ -8,6 +8,7 @@ return [
             'username' => env('HYPERF_ADMIN_DB_USER'),
             'password' => env('HYPERF_ADMIN_DB_PWD'),
             'prefix' => env('HYPERF_ADMIN_DB_PREFIX'),
+            'port' => env('HYPERF_ADMIN_DB_PORT'),
         ]),
     ],
     'init_routes' => [
