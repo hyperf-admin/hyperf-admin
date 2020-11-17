@@ -62,7 +62,9 @@ class AuthService
 
     public function logout()
     {
-        $user = $this->user();
+        $token = cookie(config('admin_cookie_name', '')) ?: (request_header('x-token')[0] ?? '');
+        $payload = JWT::verifyToken($token);
+        $user = Arr::get($payload, 'user_info');
         $cache_key = config('user_info_cache_prefix') . md5(json_encode($user));
         Redis::del($cache_key);
         Context::set('user_info', null);
