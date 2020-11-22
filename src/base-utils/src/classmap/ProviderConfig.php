@@ -76,6 +76,9 @@ class ProviderConfig
             $dependencies = array_column($arrays, 'dependencies');
             $result['dependencies'] = array_merge(...$dependencies);
         }
+        if (isset($result['middlewares']['http'])) {
+            $result['middlewares']['http'] = array_unique($result['middlewares']['http']);
+        }
 
         return $result;
     }
