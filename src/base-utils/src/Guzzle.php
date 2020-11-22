@@ -96,6 +96,12 @@ class Guzzle
                 return $item[0];
             }, request_header()));
 
+            foreach ($options['headers'] as $key => $val) {
+                $new_key = implode('-', array_map('ucfirst', explode('-', $key)));
+                $options['headers'][$new_key] = $val;
+                unset($options['headers'][$key]);
+            }
+
             $parse =parse_url($url);
             $domain = isset($parse['port']) ? $parse['host'] . ':' . $parse['port'] : $parse['host'];
             $options['cookies'] =  CookieJar::fromArray(cookie(), $domain);
