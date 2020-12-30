@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.3",
         "hyperf/amqp": "~2.1.0",
         "hyperf/crontab": "~2.1.0",
         "hyperf/nsq": "~2.1.0",
