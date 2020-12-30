@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "hyperf/validation": "~2.0.0",
+        "hyperf/validation": "~2.1.0",
         "hyperf-admin/base-utils": "dev-master"
     },
     "autoload": {

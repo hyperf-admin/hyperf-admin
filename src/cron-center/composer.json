@@ -10,10 +10,10 @@
         }
     ],
     "require": {
-        "hyperf/crontab": "~2.0.0",
-        "hyperf/process": "~2.0.0",
-        "hyperf/command": "~2.0.0",
-        "hyperf/event": "~2.0.0",
+        "hyperf/crontab": "~2.1.0",
+        "hyperf/process": "~2.1.0",
+        "hyperf/command": "~2.1.0",
+        "hyperf/event": "~2.1.0",
         "hyperf-admin/base-utils": "dev-master"
     },
     "autoload": {
