@@ -14,7 +14,7 @@ class UserController extends AdminAbstractController
 {
     protected $model_class = User::class;
 
-    public $open_resources = ['login'];
+    public $open_resources = ['login','logout'];
 
     public function scaffoldOptions()
     {
