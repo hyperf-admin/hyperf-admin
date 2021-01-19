@@ -107,7 +107,7 @@ class BaseModel extends Model
         if ($kw) {
             if (preg_match_all('/^\d+$/', $kw)) {
                 $where[$id_key] = $kw;
-            } elseif (preg_match_all('/^\d+?,/', $kw)) {
+            } elseif (preg_match_all('/^(\d+,?)$/', $kw)) {
                 $where[$id_key] = explode(',', $kw);
             } else {
                 $where[$name_key] = ['like' => "%{$kw}%"];
@@ -117,7 +117,7 @@ class BaseModel extends Model
         if ($id) {
             if (preg_match_all('/^\d+$/', $id)) {
                 $where[$id_key] = $id;
-            } elseif (preg_match_all('/^\d+?,/', $id)) {
+            } elseif (preg_match_all('/^(\d+,?)$/', $id)) {
                 $where[$id_key] = explode(',', $id);
             }
         }
