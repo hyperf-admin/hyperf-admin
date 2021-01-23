@@ -82,4 +82,9 @@ class User extends BaseModel
     {
         return $value ?: $this->username;
     }
+    
+    public function setRealnameAttribute($value)
+    {
+        $this->attributes['realname'] = $value ?: $this->username;
+    }
 }
