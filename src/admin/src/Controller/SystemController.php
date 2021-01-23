@@ -30,7 +30,7 @@ class SystemController extends AdminAbstractController
             $user_id = $this->auth_service->get('id');
             $modules = $this->permission_service->getModules($user_id);
             $config['system_module'] = array_filter($config['system_module'], function ($item) use ($modules) {
-                return !in_array($item['name'], $modules);
+                return in_array($item['name'], $modules);
             });
         }
 
