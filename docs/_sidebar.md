@@ -4,6 +4,7 @@
   * [安装](guide/install.md)
   * [开发样例](guide/dev_example.md)
   * [线上交流](guide/communication.md)
+  * [常见问题](guide/qa.md)
 * 后端
   * [脚手架](backend/scaffold.md)
   * [表单详解](backend/form.md)
