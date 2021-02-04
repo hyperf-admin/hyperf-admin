@@ -79,6 +79,7 @@ php bin/hyperf.php vendor:publish hyperf/validation
 
 'password' => [
     'salt' => env('HYPERF_ADMIN_PWD_SALT', 'c093d70f088499c3a837cae00c042f14'), // 用 md5(time()) 获取 salt
+ ]
 ```
 
 #### 8. 启动
@@ -87,7 +88,7 @@ php bin/hyperf.php vendor:publish hyperf/validation
 composer watch
 ```
 
-## nginx配置
+## 生产环境nginx配置
 
 ```nginx
 upstream backend {

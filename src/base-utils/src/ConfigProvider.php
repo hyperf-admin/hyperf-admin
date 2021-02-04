@@ -88,6 +88,9 @@ class ConfigProvider
                     HttpLogMiddleware::class,
                 ],
             ],
+            'metric' => [
+                'use_standalone_process' => false
+            ],
             'redis' => [
                 'metric' => [
                     'host' => env('REDIS_ALERT_MANAGER_HOST', 'localhost'),
