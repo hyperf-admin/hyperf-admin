@@ -30,6 +30,8 @@ cd hyperf-admin
 ``` 
 
 #### 2. 移除`hyperf-skeleton`中的日志配置, 因为 `admin` 底层已配置
+
+底层的日志配置见 [base-utils/ConfigProvider](https://github.com/hyperf-admin/hyperf-admin/blob/master/src/base-utils/src/ConfigProvider.php#L22)
 ```shell
 rm config/autoload/logger.php
 ```
