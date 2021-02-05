@@ -13,3 +13,10 @@
 
 然后 `npm i` 或 `yarn` 重新安装并启动
 
+#### 3. 点击下载中心的文件链接跳转地址提示需要登录
+
+这里的逻辑是先跳转到 http://hyperf-admin.daodao.run/api/upload/ossprivateurl?key=oss/1/export_task/xxxxx.csv, 由接口 `api/upload/ossprivateurl` 生成临时的下载地址, 也就是我们需要此接口的权限, 如下操作即可 
+![KwtN0f](https://gitee.com/daodao97/asset/raw/master/imgs/KwtN0f.png)
+勾选接口后, 点击提交, 并清理权限缓存
+![EsMcs5](https://gitee.com/daodao97/asset/raw/master/imgs/EsMcs5.png)
+同理, 其他接口的权限问题也可在此管理
