@@ -149,7 +149,7 @@ abstract class AbstractController extends Controller
                 $buttons[$key] = $this->buttonConfigConvert($item);
             }
             if (isset($item['method'])) {
-                $ubttons[$key]['method'] = $item['method'];
+                $buttons[$key]['method'] = $item['method'];
             }
          }
         return $buttons;
