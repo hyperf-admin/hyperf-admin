@@ -8,13 +8,13 @@
 
 所以我们的服务一步步的变得膨胀, 变得不稳定, 是时候做出改变了
 
-![Biv9dV](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/Biv9dV.png)
+![Biv9dV](https://gitee.com/daodao97/asset/raw/master/uPic/Biv9dV.png)
 
 我们将一些业务边界比较明显, 比较独立的功能, 以微服务的方式拆分出去, 然后注册到主项目上去, 这样我们就可以达到, 既使用一套ui, 又进行服务拆分的目的啦.
 
 `remote_module`的注册也十分简单, `http://localhost:9528/system/#/cconf/cconf_website_config` 在站点管理中增加相应模块的配置即可
 
-![1DIbj0](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/1DIbj0.png)
+![1DIbj0](https://gitee.com/daodao97/asset/raw/master/uPic/1DIbj0.png)
 
 然后在`菜单管理`中, 增加相应的模块菜单即可使用啦.
 

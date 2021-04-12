@@ -1,6 +1,6 @@
 `hyperf-admin`是前后端分离的后台管理系统, 前端基于`vue`的 `vue-admin-template`, 针对后台业务`列表`, `表单`等场景封装了大量业务组件, 后端基于`hyperf`实现, 整体思路是后端定义页面渲染规则, 前端页面渲染时首先拉取配置, 然后组件根据具体配置完成页面渲染, 方便开发者仅做少量的配置工作就能完成常见的`CRUD`工作, 同时支持自定义组件和自定义页面, 以开发更为复杂的页面.
 
-![hyperf-admin架构](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/sJaJti.png)
+![hyperf-admin架构](https://gitee.com/daodao97/asset/raw/master/uPic/sJaJti.png)
 
 前端为`vue multiple page`多页模式, 可以按模块打包, 默认包含两个模块`default` 默认模块,  `system`系统管理模块,  绝大部分业务组件在`src/components`目录, 前端文档详见 [这里](/frontend/form)
 
@@ -22,7 +22,7 @@
 后端的详细文档见[这里](/backend/scaffold)
 
 ### UI预览
-![样式预览](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/FW2cCN.png)
+![样式预览](https://gitee.com/daodao97/asset/raw/master/uPic/FW2cCN.png)
 
 ## 依赖 & 参考
 

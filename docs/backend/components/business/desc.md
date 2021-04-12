@@ -60,7 +60,7 @@ php bin/hyperf.php
 
 可以查看到相关安装命令
 
-![qIKtC8](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/qIKtC8.png)
+![qIKtC8](https://gitee.com/daodao97/asset/raw/master/uPic/qIKtC8.png)
 
 开发环境执行相应命令, 安装依赖的`db`结构即可, 在此之前请先确认`.env` 中已配置好相应连接信息.
 

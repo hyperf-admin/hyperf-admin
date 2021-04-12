@@ -2,7 +2,7 @@
 
 ### 架构
 
-![hyperf-admin架构](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/sJaJti.png)
+![hyperf-admin架构](https://gitee.com/daodao97/asset/raw/master/uPic/sJaJti.png)
 
 前端为`vue multiple page`多页模式, 可以按模块打包, 默认包含两个模块`default` 默认模块,  `system`系统管理模块,  绝大部分业务组件在`src/components`目录, 前端文档详见 [这里](/frontend/form)
 
@@ -24,7 +24,7 @@
 后端的详细文档见[这里](/backend/scaffold)
 
 ### UI预览
-![样式预览](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/FW2cCN.png)
+![样式预览](https://gitee.com/daodao97/asset/raw/master/uPic/FW2cCN.png)
 
 ### 依赖 & 参考
 

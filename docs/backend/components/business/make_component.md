@@ -36,7 +36,7 @@ CREATE TABLE `config_center` (
 
 #### 2. 创建 `Controller`, `Model`
 
-![wlXctg](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/wlXctg.png)
+![wlXctg](https://gitee.com/daodao97/asset/raw/master/uPic/wlXctg.png)
 
 此时基础文件已经生成在`lib/` 下, 作为一个`composer`包模式开发, 我们将其转移至 `/opt/hyperf-admin/config-center`目录
 
@@ -73,7 +73,7 @@ CREATE TABLE `config_center` (
 
 #### 3. 添加菜单 注册路由
 
-![uAR5lj](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/uAR5lj.png)
+![uAR5lj](https://gitee.com/daodao97/asset/raw/master/uPic/uAR5lj.png)
 
 ```php
 <?php
@@ -87,7 +87,7 @@ register_route('/config_center', ConfigCenterController::class);
 
 ?> 若配置有不生效的情况, 执行 `rm vendor/hyperf-admin/config-center && composer require hyperf-admin/config-center` 重新安装即可
 
-![EFvajy](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/EFvajy.png)
+![EFvajy](https://gitee.com/daodao97/asset/raw/master/uPic/EFvajy.png)
 
 至此已经完成了, 配置的`CRUD`.
 

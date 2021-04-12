@@ -3,9 +3,9 @@
 我们以 `用户管理` 这个页面功能为例, 讲解如何使用此功能.
 
 先上效果图
-![MXURtd](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/MXURtd.png)
+![MXURtd](https://gitee.com/daodao97/asset/raw/master/uPic/MXURtd.png)
 
-![rs0BhV](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/rs0BhV.png)
+![rs0BhV](https://gitee.com/daodao97/asset/raw/master/uPic/rs0BhV.png)
 
 此时我们只用配置好脚手架配置,即可为第三方服务提供后台页面的管理功能
 ```json

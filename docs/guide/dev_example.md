@@ -48,13 +48,13 @@ CREATE TABLE `student_score` (
 
 2.  通过`DevTools`开发者工具创建 `student_score` 相关的 `Model`, `Controller`
 
-    ![YPdEli](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/YPdEli.png)
+    ![YPdEli](https://gitee.com/daodao97/asset/raw/master/uPic/YPdEli.png)
 
     选择好相应的表后, 点击提交, 此时工具已经帮我们创建好相应的`app/Controller/StudentScoreController.php`和`app/Model/Test/StudentScore.php`
 
 3.  添加目录和菜单
 
-    ![cs0SYX](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/cs0SYX.png)
+    ![cs0SYX](https://gitee.com/daodao97/asset/raw/master/uPic/cs0SYX.png)
 
     注册路由
 
@@ -65,7 +65,7 @@ CREATE TABLE `student_score` (
 
     此时我们也已经完成了基础的`CRUD`开发
 
-    ![MEoM4p](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/MEoM4p.png)
+    ![MEoM4p](https://gitee.com/daodao97/asset/raw/master/uPic/MEoM4p.png)
 
     哦对了, 还有各种筛选条件呢? 也很简单, 在 `scaffoldOptions` 中增加 `filter`配置即可
 
@@ -84,7 +84,7 @@ CREATE TABLE `student_score` (
     }
     ```
 
-    ![u68v1D](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/u68v1D.png)
+    ![u68v1D](https://gitee.com/daodao97/asset/raw/master/uPic/u68v1D.png)
 
     还有, 大家别忘了, 需求中还要去可以按页签显示, 改怎么办呢, 这个ui可有点复杂啊, 不过在`hyperf-admin`里也同样简单
 
@@ -112,7 +112,7 @@ CREATE TABLE `student_score` (
     }
     ```
 
-    ![Ax0WWD](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/Ax0WWD.png)
+    ![Ax0WWD](https://gitee.com/daodao97/asset/raw/master/uPic/Ax0WWD.png)
 
 至此我们已经完成了绝大部分的功能开发, 如果使用熟练, 我们应该能在十分钟内完成整个功能的前后端开发, 而且还支持复杂的前端效果.
 
