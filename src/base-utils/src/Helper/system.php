@@ -85,6 +85,7 @@ if (!function_exists('move_local_file_to_filesystem')) {
             if ($private) {
                 $filesystem->setVisibility($save_file_path, AdapterInterface::VISIBILITY_PRIVATE);
             }
+            $filesystem->chmod($save_file_path, 0644);
             $meta = $filesystem->getMetadata($save_file_path);
             switch (config("file.storage.{$bucket}.driver")) {
                 case \Hyperf\Filesystem\Adapter\LocalAdapterFactory::class:
