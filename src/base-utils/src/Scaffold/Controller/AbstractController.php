@@ -203,6 +203,9 @@ abstract class AbstractController extends Controller
             }
         }
         $order_by = $this->options['order_by'] ?? '';
+        if ($sortColumn = $this->request->input('_sort_column') && $sortType = $this->request->input('_sort_type')) {
+            $order_by = $sortColumn . ' ' . $sortType;
+        }
         if (empty($conditions) && !($this->options['defaultList'] ?? true)) {
             return compact('page', 'size', 'conditions', 'order_by', 'columns', 'table_options');
         }
