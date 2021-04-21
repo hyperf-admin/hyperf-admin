@@ -132,6 +132,10 @@ class ExportService
             $bucket = config('file.export_storage', config('file.default'));
             $info = move_local_file_to_filesystem($file_path, '1/export_task/' . $file_name, true, $bucket);
             if($info) {
+                if (config('file.default') === 'local') {
+                    @chmod(config('file.storage.local.root') . '/' . $info['path'], 0644);
+                }
+                
                 $task->fill([
                     'status' => ExportTasks::STATUS_SUCCESS,
                     'download_url' => $info['path'],
