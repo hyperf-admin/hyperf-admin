@@ -70,7 +70,7 @@ composer require hyperf-admin/hyperf-admin
 
 如果存在依赖包的版本号问题, 注意, 请使用 composer2
 ```shell
-composer require hyperf-admin/hyperf-admin:0.2.0 --with-all-dependencies
+composer require hyperf-admin/hyperf-admin -W
 ```
 
 !> hyperf-admin 为分包模式, 实际应用中请根据情况安装
