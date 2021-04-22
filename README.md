@@ -2,7 +2,7 @@
 
 [详细文档](https://hyperf-admin.github.io/hyperf-admin/)
 
-[演示站点](http://hyperf-admin.daodao.run/) `用户名`: daodao, `密码`: a1a1a1
+~[演示站点](已挂)~(http://hyperf-admin.daodao.run/) `用户名`: daodao, `密码`: a1a1a1
 
 > 演示站点部署在`亚马逊免费主机`, 国内访问可能会慢
 
