@@ -390,7 +390,8 @@ abstract class AbstractController extends Controller
         $order_by = $this->options['order_by'] ?? '';
         $attr['select'] = $columns;
         $order_by && $attr['order_by'] = $order_by;
-        $childs = $this->getEntity()->list(['pid' => $id], $attr);
+        $parent_key = $this->options['table']['tree']['pid'] ?? 'pid';
+        $childs = $this->getEntity()->list([$parent_key => $id], $attr);
         foreach ($tableOptions as $item) {
             if (!isset($item['render'])) {
                 continue;
