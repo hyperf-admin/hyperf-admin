@@ -2,11 +2,11 @@
 
 [详细文档](https://hyperf-admin.github.io/hyperf-admin/)
 
-[演示站点](http://hyperf-admin.daodao.run/) `用户名`: daodao, `密码`: a1a1a1
+~[演示站点-到期已挂](http://hyperf-admin.daodao.run/) `用户名`: daodao, `密码`: a1a1a1~
 
 > 演示站点部署在`亚马逊免费主机`, 国内访问可能会慢
 
-![HyperfAdmin架构](https://cdn.jsdelivr.net/gh/daodao97/FigureBed@master/uPic/sJaJti.png)
+![HyperfAdmin架构](https://gitee.com/daodao97/asset/raw/master/uPic/sJaJti.png)
 
 前端为`vue multiple page`多页模式, 可以按模块打包, 默认包含两个模块`default` 默认模块,  `system`系统管理模块,  绝大部分业务组件在`src/components`目录
 
