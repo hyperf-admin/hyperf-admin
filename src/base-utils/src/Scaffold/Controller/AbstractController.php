@@ -208,7 +208,7 @@ abstract class AbstractController extends Controller
             $order_by = $sortColumn . ' ' . $sortType;
         }
         if (empty($conditions) && !($this->options['defaultList'] ?? true)) {
-            return compact('page', 'size', 'conditions', 'order_by', 'columns', 'table_options','group_by');
+            return compact('page', 'size', 'conditions', 'order_by', 'columns', 'table_options', 'group_by');
         }
         if (method_exists($this, 'beforeListQuery')) {
             $hook_params = get_class_method_params_name($this, 'beforeListQuery');
@@ -220,7 +220,7 @@ abstract class AbstractController extends Controller
                 $this->beforeListQuery($conditions, $order_by, $group_by, $columns);
             }
         }
-        return compact('page', 'size', 'conditions', 'order_by', 'columns', 'table_options','group_by');
+        return compact('page', 'size', 'conditions', 'order_by', 'columns', 'table_options', 'group_by');
     }
 
     /**
@@ -238,7 +238,6 @@ abstract class AbstractController extends Controller
             $group_by
         ] = array_values($this->makeWhere());
         $entity = $this->getEntity();
-//        $count = $entity->count($conditions);
         if ($group_by) {
             $entity->getModel()->groupBy($group_by);
             $count_query = clone $entity;
