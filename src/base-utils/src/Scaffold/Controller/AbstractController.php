@@ -203,11 +203,12 @@ abstract class AbstractController extends Controller
             }
         }
         $order_by = $this->options['order_by'] ?? '';
+        $group_by = $this->options['group_by'] ?? '';
         if ($sortColumn = $this->request->input('_sort_column') && $sortType = $this->request->input('_sort_type')) {
             $order_by = $sortColumn . ' ' . $sortType;
         }
         if (empty($conditions) && !($this->options['defaultList'] ?? true)) {
-            return compact('page', 'size', 'conditions', 'order_by', 'columns', 'table_options');
+            return compact('page', 'size', 'conditions', 'order_by', 'columns', 'table_options', 'group_by');
         }
         if (method_exists($this, 'beforeListQuery')) {
             $hook_params = get_class_method_params_name($this, 'beforeListQuery');
@@ -215,9 +216,11 @@ abstract class AbstractController extends Controller
                 $this->beforeListQuery($conditions, $order_by);
             } elseif (count($hook_params) === 1) {
                 $this->beforeListQuery($conditions);
+            } elseif (count($hook_params) === 4) {
+                $this->beforeListQuery($conditions, $order_by, $group_by, $columns);
             }
         }
-        return compact('page', 'size', 'conditions', 'order_by', 'columns', 'table_options');
+        return compact('page', 'size', 'conditions', 'order_by', 'columns', 'table_options', 'group_by');
     }
 
     /**
@@ -232,13 +235,25 @@ abstract class AbstractController extends Controller
             $order_by,
             $columns,
             $tableOptions,
+            $group_by
         ] = array_values($this->makeWhere());
         $entity = $this->getEntity();
-        $count = $entity->count($conditions);
+        if ($group_by) {
+            $entity->getModel()->groupBy($group_by);
+            $count_query = clone $entity;
+            $count = $count_query->getModel()->select(
+                gettype($group_by) == 'array' ? $group_by[0] : $group_by,
+                DB::raw('count(*) as total')
+            )->get()->count();
+        } else {
+            $count = $entity->count($conditions);
+        }
+        
         $list = [];
         if ($count) {
             $attr['select'] = $columns;
             $order_by && $attr['order_by'] = $order_by;
+            $group_by && $attr['group_by'] = $group_by;
             $list = $entity->list($conditions, $attr, $page, $size);
         }
         $list = $this->listFilter($list, $tableOptions);
