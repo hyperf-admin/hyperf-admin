@@ -44,7 +44,7 @@ class ProviderConfig
 
             $providers = array_values($package);
             usort($providers, function ($a, $b) {
-                return $a['weight'] > $b['weight'];
+                return intval($a['weight'] > $b['weight']);
             });
             $providers = array_column($providers, 'provider');
             static::$providerConfigs = static::loadProviders($providers);
