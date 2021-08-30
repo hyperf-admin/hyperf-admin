@@ -10,10 +10,10 @@
     ],
     "require": {
         "php": ">=7.3",
-        "hyperf/amqp": "~2.1.0",
-        "hyperf/crontab": "~2.1.0",
-        "hyperf/nsq": "~2.1.0",
-        "hyperf/process": "~2.1.0"
+        "hyperf/amqp": "~2.2.0",
+        "hyperf/crontab": "~2.2.0",
+        "hyperf/nsq": "~2.2.0",
+        "hyperf/process": "~2.2.0"
     },
     "autoload": {
         "psr-4": {

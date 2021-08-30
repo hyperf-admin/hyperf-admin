@@ -9,8 +9,8 @@
         }
     ],
     "require": {
-        "hyperf/async-queue": "~2.1.0",
-        "hyperf/process": "~2.1.0",
+        "hyperf/async-queue": "~2.2.0",
+        "hyperf/process": "~2.2.0",
         "hyperf-admin/rule-engine": "dev-master"
     },
     "autoload": {
