@@ -56,7 +56,7 @@ CREATE TABLE `front_routes` (
   `scaffold_action` varchar(255) NOT NULL DEFAULT '' COMMENT '脚手架预置权限',
   `config` text COMMENT '配置化脚手架',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4 COMMENT='前端路由(菜单)';;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4 COMMENT='前端路由(菜单)';
 
 CREATE TABLE `global_config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
