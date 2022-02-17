@@ -153,14 +153,3 @@ server {
 浏览器打开 [http://youdomain.com:8081/default/#/dashboard](http://youdomain.com:8081/default/#/dashboard) 即可访问
 
 默认账号 `daodao`, 密码 `a1a1a1`
-
-
-### 关爱老年人
-    如果该项目让你的工作变的愉悦, 那么 请作者喝杯咖啡吧
-
-<div align="center">
-  <p>
-    <img width="284" style="display:inline-block" src="https://gitee.com/daodao97/asset/raw/master/devbox/40VSa2ZlDv.jpg">
-    <img width="284" style="display:inline-block" src="https://gitee.com/daodao97/asset/raw/master/devbox/Bdvq8hXIGB.jpg">
-  </p>
-<div>
