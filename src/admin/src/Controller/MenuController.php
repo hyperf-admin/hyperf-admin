@@ -201,7 +201,7 @@ class MenuController extends AdminAbstractController
                 ],
                 'permission|权限标识' => [
                     'type' => 'select',
-                    'default' => [],
+                    'default' => '',
                     'props' => [
                         'multiple' => true,
                         'selectApi' => '/system/routes?module={module}'
