@@ -36,7 +36,7 @@
         "hyperf/snowflake": "~2.2.0",
         "hyperf/validation": "~2.2.0",
         "nette/php-generator": "^3.4",
-        "xxtime/flysystem-aliyun-oss": "^1.5",
+        "xxtime/flysystem-aliyun-oss": "~1.5",
         "yadakhov/insert-on-duplicate-key": "^1.2",
         "zoujingli/ip2region": "^1.0"
     },
