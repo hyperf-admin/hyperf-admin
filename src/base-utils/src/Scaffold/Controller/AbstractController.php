@@ -827,7 +827,7 @@ abstract class AbstractController extends Controller
             switch ($_form['type']) {
                 case 'checkbox':
                 case 'cascader':
-                    $_form['value'] = array_map('intval', is_array($_form['value']) ? $_form['value'] : (array)$_form['value']);
+                    $_form['value'] = (array)$_form['value'];
                     break;
                 case 'image':
                     $biz['props']['limit'] = $biz['props']['limit'] ?? 1;
